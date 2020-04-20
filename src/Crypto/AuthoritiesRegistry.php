@@ -2,13 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Crypto;
+namespace Windy\Guardian\Crypto;
 
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Validation\ValidationException;
-use Mathrix\Lumen\JWT\Exceptions\InvalidConfiguration;
+use Windy\Guardian\Exceptions\InvalidConfiguration;
 use Throwable;
 
+/**
+ * @mixin Authority
+ */
 class AuthoritiesRegistry extends Registry
 {
     private $keyRegistry;

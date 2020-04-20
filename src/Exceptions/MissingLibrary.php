@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Exceptions;
+namespace Windy\Guardian\Exceptions;
 
 use RuntimeException;
 use Throwable;

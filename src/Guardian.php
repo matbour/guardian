@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Facades;
+namespace Windy\Guardian;
 
 use Illuminate\Support\Facades\Facade;
-use Mathrix\Lumen\JWT\Crypto\AuthoritiesRegistry;
+use Windy\Guardian\Crypto\AuthoritiesRegistry;
 
 /**
  * @mixin AuthoritiesRegistry
  */
-class JWT extends Facade
+class Guardian extends Facade
 {
     protected static function getFacadeAccessor(): string
     {

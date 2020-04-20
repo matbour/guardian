@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Tests;
+namespace Windy\Guardian\Tests;
 
 use Illuminate\Foundation\Application as LaravelApplication;
 use Laravel\Lumen\Application as LumenApplication;
-use Mathrix\Lumen\JWT\Providers\JWTServiceProvider;
+use Windy\Guardian\GuardianServiceProvider;
 use function dirname;
 use function env;
 
@@ -28,7 +28,7 @@ class TestCase extends \Sandbox\TestCase
             $app = require dirname(__DIR__) . '/sandbox/bootstrap/bootstrap.laravel.php';
         }
 
-        $app->register(JWTServiceProvider::class);
+        $app->register(GuardianServiceProvider::class);
 
         return $app;
     }

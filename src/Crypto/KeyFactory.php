@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Crypto;
+namespace Windy\Guardian\Crypto;
 
 use Closure;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -14,10 +14,10 @@ use Illuminate\Validation\ValidationException;
 use Jose\Component\Core\JWK;
 use Jose\Component\KeyManagement\JWKFactory as JoseJWKFactory;
 use Jose\Component\Signature\Algorithm\RS512;
-use Mathrix\Lumen\JWT\Constants;
-use Mathrix\Lumen\JWT\Exceptions\InvalidConfiguration;
-use Mathrix\Lumen\JWT\Exceptions\MissingLibrary;
-use Mathrix\Lumen\JWT\Utils\IO;
+use Windy\Guardian\Constants;
+use Windy\Guardian\Exceptions\InvalidConfiguration;
+use Windy\Guardian\Exceptions\MissingLibrary;
+use Windy\Guardian\Utils\IO;
 use function array_merge;
 use function assert;
 use function class_exists;

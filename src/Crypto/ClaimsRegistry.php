@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Crypto;
+namespace Windy\Guardian\Crypto;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Container\Container;
-use Mathrix\Lumen\JWT\Exceptions\InvalidConfiguration;
+use Windy\Guardian\Exceptions\InvalidConfiguration;
 use Throwable;
 
 /**

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Exceptions;
+namespace Windy\Guardian\Exceptions;
 
 use InvalidArgumentException;
 use Throwable;
@@ -28,8 +28,8 @@ class InvalidConfiguration extends InvalidArgumentException
     public static function key(string $name, ?Throwable $previous = null): self
     {
         $message = <<<PAYLOAD
-Unknown key configuration `$name`. Did you forget to define it in your config/jwt.php? For instance:
-config/jwt.php
+Unknown key configuration `$name`. Did you forget to define it in your config/guardian.php? For instance:
+config/guardian.php
 [
     ...
     'keys' => [
@@ -49,8 +49,8 @@ PAYLOAD;
     public static function claims(string $name, ?Throwable $previous = null): self
     {
         $message = <<<PAYLOAD
-Unknown payload configuration `$name`. Did you forget to define it in your config/jwt.php? For instance:
-config/jwt.php
+Unknown payload configuration `$name`. Did you forget to define it in your config/guardian.php? For instance:
+config/guardian.php
 [
     ...
     'payloads' => [
@@ -73,8 +73,8 @@ PAYLOAD;
     public static function authority(string $name, ?Throwable $previous = null): self
     {
         $message = <<<PAYLOAD
-Unknown key configuration `$name`. Did you forget to define it in your config/jwt.php? For instance:
-config/jwt.php
+Unknown key configuration `$name`. Did you forget to define it in your config/guardian.php? For instance:
+config/guardian.php
 [
     ...
     'authorities' => [

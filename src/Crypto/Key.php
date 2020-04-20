@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Crypto;
+namespace Windy\Guardian\Crypto;
 
 use Jose\Component\Core\Algorithm;
 use Jose\Component\Core\JWK;

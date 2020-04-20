@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Utils;
+namespace Windy\Guardian\Utils;
 
-use Mathrix\Lumen\JWT\Exceptions\IOException;
+use Windy\Guardian\Exceptions\IOException;
 use function dirname;
 use function file_exists;
 use function file_get_contents;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Tests\Functional\Crypto;
+namespace Windy\Guardian\Tests\Functional\Crypto;
 
 use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
@@ -16,11 +16,11 @@ use Jose\Component\Signature\Algorithm\HS512;
 use Jose\Component\Signature\Algorithm\RS256;
 use Jose\Component\Signature\Algorithm\RS384;
 use Jose\Component\Signature\Algorithm\RS512;
-use Mathrix\Lumen\JWT\Constants;
-use Mathrix\Lumen\JWT\Crypto\KeyFactory;
-use Mathrix\Lumen\JWT\Exceptions\InvalidConfiguration;
-use Mathrix\Lumen\JWT\Exceptions\MissingLibrary;
-use Mathrix\Lumen\JWT\Tests\TestCase;
+use Windy\Guardian\Constants;
+use Windy\Guardian\Crypto\KeyFactory;
+use Windy\Guardian\Exceptions\InvalidConfiguration;
+use Windy\Guardian\Exceptions\MissingLibrary;
+use Windy\Guardian\Tests\TestCase;
 use Ramsey\Uuid\Uuid;
 use function array_key_exists;
 use function array_map;
@@ -30,7 +30,7 @@ use function storage_path;
 use function unlink;
 
 /**
- * @coversDefaultClass \Mathrix\Lumen\JWT\Crypto\KeyFactory
+ * @coversDefaultClass \Windy\Guardian\Crypto\KeyFactory
  */
 class KeyFactoryTest extends TestCase
 {

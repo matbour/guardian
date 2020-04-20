@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Crypto;
+namespace Windy\Guardian\Crypto;
 
 use DateTime;
 use Jose\Component\Checker\AlgorithmChecker;

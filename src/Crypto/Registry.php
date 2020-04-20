@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Crypto;
+namespace Windy\Guardian\Crypto;
 
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -20,7 +20,7 @@ abstract class Registry
     /** @var string The configuration key. */
     protected $key;
     /** @var mixed[] $cache The loaded registry objects. */
-    protected $cache;
+    protected $cache = [];
     /** @var Container $container The application container instance. */
     protected $container;
     /** @var Repository $config The application configuration. */
@@ -47,7 +47,7 @@ abstract class Registry
      */
     public function exists(string $name): bool
     {
-        return $this->config->has('jwt.' . Str::plural($this->key) . ".$name");
+        return $this->config->has('guardian.' . Str::plural($this->key) . ".$name");
     }
 
     /**
@@ -59,7 +59,7 @@ abstract class Registry
      */
     public function default()
     {
-        return $this->get($this->config->get("jwt.defaults.{$this->key}", 'default'));
+        return $this->get($this->config->get("guardian.defaults.{$this->key}", 'default'));
     }
 
     /**
@@ -96,7 +96,9 @@ abstract class Registry
                 return $this->cache[$name];
             }
 
-            $this->cache[$name] = $this->create($this->config->get('jwt.' . Str::plural($this->key) . ".$name", []));
+            $this->cache[$name] = $this->create(
+                $this->config->get('guardian.' . Str::plural($this->key) . ".$name", [])
+            );
 
             return $this->cache[$name];
         }

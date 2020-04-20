@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mathrix\Lumen\JWT\Crypto;
+namespace Windy\Guardian\Crypto;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Support\Arrayable;
@@ -13,9 +13,9 @@ use Jose\Component\Signature\JWS;
 use Jose\Component\Signature\JWSBuilder;
 use Jose\Component\Signature\JWSVerifier;
 use Jose\Component\Signature\Serializer\CompactSerializer;
-use Mathrix\Lumen\JWT\Exceptions\InvalidClaimException;
-use Mathrix\Lumen\JWT\Exceptions\InvalidSignatureException;
-use Mathrix\Lumen\JWT\Exceptions\JWTException;
+use Windy\Guardian\Exceptions\InvalidClaimException;
+use Windy\Guardian\Exceptions\InvalidSignatureException;
+use Windy\Guardian\Exceptions\JWTException;
 use Traversable;
 use function array_merge;
 use function is_resource;
@@ -103,7 +103,7 @@ class Authority
      *
      * @return JWS The unserialized JWS.
      */
-    private function unserialize($jws): JWS
+    public function unserialize($jws): JWS
     {
         if (is_string($jws)) {
             $jws = $this->serializer->unserialize($jws);
