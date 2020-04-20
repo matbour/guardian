@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- PHP_CodeSniffer global configuration file -->
+<ruleset
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    name="mathrix-education/lumen-jwt-auth"
+    xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd"
+>
+    <!-- Arguments -->
+    <arg value="p"/>
+    <arg name="basepath" value="."/>
+    <!--<arg name="cache" value="storage/framework/cache/data/phpcs.json"/>-->
+    <arg name="colors"/>
+    <arg name="parallel" value="75"/>
+    <arg name="severity" value="1"/>
+    <arg name="error-severity" value="1"/>
+    <arg name="warning-severity" value="1"/>
+
+    <!-- Inclusions -->
+    <file>src</file>
+    <file>tests</file>
+
+    <!-- Rules inherited from Doctrine -->
+    <rule ref="Mathrix">
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator"/>
+        <exclude name="SlevomatCodingStandard.Functions.TrailingCommaInCall"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint"></exclude>
+    </rule>
+</ruleset>
