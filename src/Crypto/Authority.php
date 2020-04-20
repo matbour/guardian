@@ -56,7 +56,7 @@ class Authority
      *
      * @return mixed[] The output payload.
      */
-    private function payload($payload): array
+    public function payload($payload): array
     {
         if (is_resource($payload)) {
             $payload = $this->payload(stream_get_contents($payload));

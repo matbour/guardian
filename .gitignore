@@ -1,4 +1,4 @@
-# User-specific stuff:
 /.idea
 /vendor
 composer.lock
+.phpunit.result.cache

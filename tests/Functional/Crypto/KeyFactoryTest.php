@@ -16,12 +16,12 @@ use Jose\Component\Signature\Algorithm\HS512;
 use Jose\Component\Signature\Algorithm\RS256;
 use Jose\Component\Signature\Algorithm\RS384;
 use Jose\Component\Signature\Algorithm\RS512;
+use Ramsey\Uuid\Uuid;
 use Windy\Guardian\Constants;
 use Windy\Guardian\Crypto\KeyFactory;
 use Windy\Guardian\Exceptions\InvalidConfiguration;
 use Windy\Guardian\Exceptions\MissingLibrary;
-use Windy\Guardian\Tests\TestCase;
-use Ramsey\Uuid\Uuid;
+use Windy\Guardian\Tests\GuardianTestCase;
 use function array_key_exists;
 use function array_map;
 use function file_exists;
@@ -32,7 +32,7 @@ use function unlink;
 /**
  * @coversDefaultClass \Windy\Guardian\Crypto\KeyFactory
  */
-class KeyFactoryTest extends TestCase
+class KeyFactoryTest extends GuardianTestCase
 {
     /** @var KeyFactory $instance */
     private $instance;
@@ -45,9 +45,19 @@ class KeyFactoryTest extends TestCase
     }
 
     /**
+     * @covers ::__construct
+     */
+    public function testConstruct(): void
+    {
+        $this->instance = $this->app->make(KeyFactory::class);
+        $this->assertInstanceOf(KeyFactory::class, $this->instance);
+    }
+
+    /**
      * @testWith ["HS512", "Jose\\Component\\Signature\\Algorithm\\HS512"]
      *           ["Jose\\Component\\Signature\\Algorithm\\HS512", "Jose\\Component\\Signature\\Algorithm\\HS512"]
      * @testdox resolves $algorithm as $expectedAlgorithm.
+     * @covers ::getAlgorithm
      *
      * @param string $algorithm         The algorithm input.
      * @param string $expectedAlgorithm The algorithm output.
@@ -59,6 +69,7 @@ class KeyFactoryTest extends TestCase
 
     /**
      * @testdox fails to resolve an invalid algorithm.
+     * @covers ::getAlgorithm
      */
     public function testGetAlgorithmInvalid(): void
     {

@@ -34,8 +34,8 @@ abstract class Registry
      */
     public function __construct(Container $container, string $key)
     {
-        $this->key    = $key;
         $this->config = $container->make('config');
+        $this->key    = $key;
     }
 
     /**
@@ -48,18 +48,6 @@ abstract class Registry
     public function exists(string $name): bool
     {
         return $this->config->has('guardian.' . Str::plural($this->key) . ".$name");
-    }
-
-    /**
-     * Get the default object.
-     *
-     * @return mixed The object associated with the default object configuration.
-     *
-     * @throws ValidationException
-     */
-    public function default()
-    {
-        return $this->get($this->config->get("guardian.defaults.{$this->key}", 'default'));
     }
 
     /**
@@ -83,7 +71,7 @@ abstract class Registry
      *
      * @return mixed The object associated with the provided object configuration.
      *
-     * @throws ValidationException
+     * @throws Throwable
      */
     public function get(?string $name = null)
     {
@@ -107,6 +95,18 @@ abstract class Registry
     }
 
     /**
+     * Get the default object.
+     *
+     * @return mixed The object associated with the default object configuration.
+     *
+     * @throws Throwable
+     */
+    public function default()
+    {
+        return $this->get($this->config->get("guardian.defaults.{$this->key}", 'default'));
+    }
+
+    /**
      * Dynamically call the default instance.
      *
      * @param string  $method     The method to call.
@@ -114,7 +114,7 @@ abstract class Registry
      *
      * @return mixed
      *
-     * @throws ValidationException
+     * @throws Throwable
      */
     public function __call(string $method, array $parameters)
     {

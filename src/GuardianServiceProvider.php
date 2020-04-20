@@ -17,12 +17,15 @@ class GuardianServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/guardian.php', 'guardian');
-
         $this->app->singleton(Serializer::class, CompactSerializer::class);
         $this->app->singleton(KeyRegistry::class);
         $this->app->singleton(ClaimsRegistry::class);
         $this->app->singleton(AuthoritiesRegistry::class);
+    }
+
+    public function boot(): void
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/guardian.php', 'guardian');
 
         /** @var Factory $auth */
         $auth = $this->app->make('auth');

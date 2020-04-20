@@ -6,6 +6,7 @@ namespace Windy\Guardian\Tests;
 
 use Illuminate\Foundation\Application as LaravelApplication;
 use Laravel\Lumen\Application as LumenApplication;
+use Sandbox\TestCase;
 use Windy\Guardian\GuardianServiceProvider;
 use function dirname;
 use function env;
@@ -13,7 +14,7 @@ use function env;
 /**
  * @property LaravelApplication|LumenApplication $app
  */
-class TestCase extends \Sandbox\TestCase
+abstract class GuardianTestCase extends TestCase
 {
     /**
      * @return mixed

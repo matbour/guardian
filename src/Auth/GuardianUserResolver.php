@@ -12,7 +12,6 @@ use Illuminate\Contracts\Container\Container;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Windy\Guardian\Crypto\AuthoritiesRegistry;
 use Windy\Guardian\Crypto\Authority;
 use function array_key_exists;
@@ -32,9 +31,6 @@ class GuardianUserResolver
 
     /**
      * @param Container $container The application container.
-     *
-     * @throws BindingResolutionException
-     * @throws ValidationException
      */
     public function __construct(Container $container)
     {
