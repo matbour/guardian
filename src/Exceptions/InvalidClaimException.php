@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Windy\Guardian\Exceptions;
 
-class InvalidClaimException extends JWTException
+/**
+ * Thrown when a JWT claim is invalid.
+ */
+class InvalidClaimException extends GuardianException
 {
 }

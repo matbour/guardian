@@ -6,8 +6,8 @@ namespace Windy\Guardian\Crypto;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Container\Container;
-use Windy\Guardian\Exceptions\InvalidConfiguration;
 use Throwable;
+use Windy\Guardian\Exceptions\InvalidClaimsConfigurationException;
 
 /**
  * Holds the claims declared in the JWT configuration.
@@ -39,10 +39,10 @@ class ClaimsRegistry extends Registry
     /**
      * @param string $name The unknown claims configuration name.
      *
-     * @return Throwable The invalid configuration exception.
+     * @return InvalidClaimsConfigurationException The invalid claims configuration exception.
      */
     public function unknown(string $name): Throwable
     {
-        return InvalidConfiguration::claims($name);
+        return new InvalidClaimsConfigurationException($name);
     }
 }

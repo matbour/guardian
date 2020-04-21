@@ -19,7 +19,7 @@ use Jose\Component\Signature\Algorithm\RS512;
 use Ramsey\Uuid\Uuid;
 use Windy\Guardian\Constants;
 use Windy\Guardian\Crypto\KeyFactory;
-use Windy\Guardian\Exceptions\InvalidConfiguration;
+use Windy\Guardian\Exceptions\InvalidConfigurationException;
 use Windy\Guardian\Exceptions\MissingLibraryException;
 use Windy\Guardian\Tests\GuardianTestCase;
 use function array_key_exists;
@@ -70,11 +70,10 @@ class KeyFactoryTest extends GuardianTestCase
     /**
      * @testdox fails to resolve an invalid algorithm.
      * @covers ::getAlgorithm
-     * @covers \Windy\Guardian\Exceptions\InvalidConfiguration::algorithm
      */
     public function testGetAlgorithmInvalid(): void
     {
-        $this->expectException(InvalidConfiguration::class);
+        $this->expectException(InvalidConfigurationException::class);
         $this->instance->getAlgorithm('Invalid');
     }
 
@@ -83,6 +82,8 @@ class KeyFactoryTest extends GuardianTestCase
      */
     public function createCreateFromConfigDataset(): array
     {
+        $this->refreshApplication();
+
         $configs = [
             [
                 // Default configuration, covers RSA
@@ -151,7 +152,7 @@ class KeyFactoryTest extends GuardianTestCase
      *
      * @param mixed[] $config The key configuration.
      *
-     * @throws InvalidConfiguration
+     * @throws InvalidConfigurationException
      * @throws MissingLibraryException
      * @throws ValidationException
      */
@@ -180,7 +181,7 @@ class KeyFactoryTest extends GuardianTestCase
      * @testdox loads an existing key and does not override it.
      * @covers ::createFromConfig
      *
-     * @throws InvalidConfiguration
+     * @throws InvalidConfigurationException
      * @throws MissingLibraryException
      * @throws ValidationException
      */

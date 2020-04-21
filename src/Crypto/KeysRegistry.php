@@ -7,8 +7,8 @@ namespace Windy\Guardian\Crypto;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Validation\ValidationException;
-use Windy\Guardian\Exceptions\InvalidConfiguration;
 use Throwable;
+use Windy\Guardian\Exceptions\InvalidKeyConfigurationException;
 
 /**
  * Holds the keys declared in the JWT configuration.
@@ -47,10 +47,10 @@ class KeysRegistry extends Registry
     /**
      * @param string $name The key configuration name.
      *
-     * @return Throwable The invalid configuration exception.
+     * @return InvalidKeyConfigurationException The invalid key configuration exception.
      */
     public function unknown(string $name): Throwable
     {
-        return InvalidConfiguration::key($name);
+        return new InvalidKeyConfigurationException($name);
     }
 }

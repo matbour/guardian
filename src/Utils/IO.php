@@ -25,7 +25,7 @@ class IO
      *
      * @return string The read data.
      */
-    public static function read(string $path): string
+    public function read(string $path): string
     {
         if (!file_exists($path)) {
             throw new IOException("File $path does not exist");
@@ -46,7 +46,7 @@ class IO
      *
      * @return false|int
      */
-    public static function write(string $path, $data)
+    public function write(string $path, $data)
     {
         $dir = dirname($path);
 
@@ -54,8 +54,12 @@ class IO
             throw new IOException("Directory $dir does not exist and thus $path cannot be written");
         }
 
-        if (!is_dir($dir)) {
-            throw new IOException("$dir is not a directory and thus $path cannot be written");
+        if (file_exists($path) && is_dir($path)) {
+            throw new IOException("$path is a directory and thus $path cannot be written");
+        }
+
+        if (file_exists($path) && !is_writable($path)) {
+            throw new IOException("File $path exists but is not writable with the current user privileges");
         }
 
         if (!is_writable($dir)) {

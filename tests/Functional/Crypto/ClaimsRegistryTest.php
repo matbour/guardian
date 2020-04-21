@@ -8,8 +8,9 @@ use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Container\Container;
 use Mockery;
+use Throwable;
 use Windy\Guardian\Crypto\ClaimsRegistry;
-use Windy\Guardian\Exceptions\InvalidConfiguration;
+use Windy\Guardian\Exceptions\InvalidClaimsConfigurationException;
 use Windy\Guardian\Tests\GuardianTestCase;
 
 /**
@@ -44,15 +45,14 @@ class ClaimsRegistryTest extends GuardianTestCase
 
     /**
      * @covers ::unknown
-     * @covers \Windy\Guardian\Exceptions\InvalidConfiguration::claims
+     *
+     * @throws Throwable
      */
     public function testUnknown(): void
     {
         /** @var ClaimsRegistry $registry */
-        $registry  = $this->app->make(ClaimsRegistry::class);
-        $exception = $registry->unknown('foo');
-
-        $this->assertInstanceOf(InvalidConfiguration::class, $exception);
-        $this->assertMatchesRegularExpression('/claims.*foo/s', $exception->getMessage());
+        $registry = $this->app->make(ClaimsRegistry::class);
+        $this->expectException(InvalidClaimsConfigurationException::class);
+        throw $registry->unknown('foo');
     }
 }

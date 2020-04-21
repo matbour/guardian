@@ -23,9 +23,9 @@
   ],
   "support": {
     "email": "mathieu.tin.bour@gmail.com",
-    "issues": "https://github.com/mathieu-bour/lumen-jwt-auth/issues",
-    "source": "https://github.com/mathieu-bour/lumen-jwt-auth",
-    "docs": "https://github.com/mathieu-bour/lumen-jwt-auth"
+    "issues": "https://github.com/mathieu-bour/guardian/issues",
+    "source": "https://github.com/mathieu-bour/guardian",
+    "docs": "https://github.com/mathieu-bour/guardian"
   },
   "require": {
     "php": "^7.2.5",
@@ -38,7 +38,9 @@
     "ramsey/uuid": "^3.8",
     "web-token/jwt-checker": "^2.1",
     "web-token/jwt-core": "^2.1",
-    "web-token/jwt-key-mgmt": "^2.1"
+    "web-token/jwt-key-mgmt": "^2.1",
+    "ext-zip": "*",
+    "ext-curl": "*"
   },
   "require-dev": {
     "laravel/framework": "^7.0",
@@ -74,5 +76,15 @@
     "preferred-install": "dist",
     "sort-packages": true,
     "optimize-autoloader": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Windy\\Guardian\\GuardianServiceProvider"
+      ],
+      "aliases": {
+        "Guardian": "Windy\\Guardian\\Guardian"
+      }
+    }
   }
 }

@@ -9,10 +9,11 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Validation\ValidationException;
 use Mockery;
+use Throwable;
 use Windy\Guardian\Crypto\Key;
 use Windy\Guardian\Crypto\KeyFactory;
 use Windy\Guardian\Crypto\KeysRegistry;
-use Windy\Guardian\Exceptions\InvalidConfiguration;
+use Windy\Guardian\Exceptions\InvalidKeyConfigurationException;
 use Windy\Guardian\Tests\GuardianTestCase;
 
 /**
@@ -57,15 +58,14 @@ class KeysRegistryTest extends GuardianTestCase
 
     /**
      * @covers ::unknown
-     * @covers \Windy\Guardian\Exceptions\InvalidConfiguration::key
+     *
+     * @throws Throwable
      */
     public function testUnknown(): void
     {
         /** @var KeysRegistry $registry */
-        $registry  = $this->app->make(KeysRegistry::class);
-        $exception = $registry->unknown('foo');
-
-        $this->assertInstanceOf(InvalidConfiguration::class, $exception);
-        $this->assertMatchesRegularExpression('/keys.*foo/s', $exception->getMessage());
+        $registry = $this->app->make(KeysRegistry::class);
+        $this->expectException(InvalidKeyConfigurationException::class);
+        throw $registry->unknown('foo');
     }
 }

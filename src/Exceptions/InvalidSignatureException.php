@@ -6,7 +6,10 @@ namespace Windy\Guardian\Exceptions;
 
 use Throwable;
 
-class InvalidSignatureException extends JWTException
+/**
+ * Thrown when the signature of a JWT is invalid.
+ */
+class InvalidSignatureException extends GuardianException
 {
     public function __construct(
         ?string $message = null,

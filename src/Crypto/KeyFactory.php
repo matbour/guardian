@@ -11,15 +11,14 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Factory;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
-use Jose\Component\Core\JWK;
 use Jose\Component\KeyManagement\JWKFactory as JoseJWKFactory;
 use Jose\Component\Signature\Algorithm\RS512;
 use Windy\Guardian\Constants;
-use Windy\Guardian\Exceptions\InvalidConfiguration;
+use Windy\Guardian\Exceptions\InvalidAlgorithmExceptionException;
+use Windy\Guardian\Exceptions\InvalidConfigurationException;
 use Windy\Guardian\Exceptions\MissingLibraryException;
 use Windy\Guardian\Utils\IO;
 use function array_merge;
-use function assert;
 use function class_exists;
 use function file_exists;
 use function in_array;
@@ -34,6 +33,8 @@ class KeyFactory
 {
     /** @var Factory $validator The Illuminate validator factory. */
     private $validator;
+    /** @var IO $io The IO helper */
+    private $io;
 
     /**
      * @param Container $container The application container.
@@ -43,6 +44,7 @@ class KeyFactory
     public function __construct(Container $container)
     {
         $this->validator = $container->make('validator');
+        $this->io        = $container->make(IO::class);
     }
 
     /**
@@ -65,7 +67,7 @@ class KeyFactory
      *
      * @return string The algorithm class full qualified name.
      *
-     * @throws InvalidConfiguration
+     * @throws InvalidAlgorithmExceptionException
      * @throws MissingLibraryException
      */
     public function getAlgorithm(string $algorithm): string
@@ -97,7 +99,7 @@ class KeyFactory
         }
         // @codeCoverageIgnoreEnd
 
-        throw InvalidConfiguration::algorithm($algorithm); // The algorithm is 100% invalid
+        throw new InvalidAlgorithmExceptionException($algorithm); // The algorithm is 100% invalid
     }
 
     /**
@@ -107,7 +109,7 @@ class KeyFactory
      *
      * @return Key The key object.
      *
-     * @throws InvalidConfiguration
+     * @throws InvalidConfigurationException
      * @throws MissingLibraryException
      * @throws ValidationException
      */
@@ -121,7 +123,7 @@ class KeyFactory
 
         if (file_exists($config['path'])) {
             return new Key(
-                JoseJWKFactory::createFromJsonObject(IO::read($config['path'])),
+                JoseJWKFactory::createFromJsonObject($this->io->read($config['path'])),
                 $config
             );
         }
@@ -188,9 +190,7 @@ class KeyFactory
             $jwk = JoseJWKFactory::createRSAKey($config['size']);
         }
 
-        assert($jwk instanceof JWK);
-
-        IO::write($config['path'], json_encode($jwk->jsonSerialize(), JSON_PRETTY_PRINT));
+        $this->io->write($config['path'], json_encode($jwk->jsonSerialize(), JSON_PRETTY_PRINT));
 
         return new Key($jwk, $config);
     }

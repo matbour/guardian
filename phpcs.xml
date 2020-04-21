@@ -15,14 +15,14 @@
     <arg name="error-severity" value="1"/>
     <arg name="warning-severity" value="1"/>
 
-    <!-- Inclusions -->
-    <file>src</file>
-    <file>tests</file>
-
     <!-- Rules inherited from Doctrine -->
     <rule ref="Mathrix">
         <exclude name="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator"/>
         <exclude name="SlevomatCodingStandard.Functions.TrailingCommaInCall"/>
-        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint"></exclude>
+        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint"/>
     </rule>
+
+    <!-- Inclusions -->
+    <file>src</file>
+    <file>tests</file>
 </ruleset>

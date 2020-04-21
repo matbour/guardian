@@ -8,12 +8,13 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Container\Container;
 use Jose\Component\Signature\Algorithm\HS256;
 use Mockery;
+use Throwable;
 use Windy\Guardian\Crypto\AuthoritiesRegistry;
 use Windy\Guardian\Crypto\Claims;
 use Windy\Guardian\Crypto\ClaimsRegistry;
 use Windy\Guardian\Crypto\Key;
 use Windy\Guardian\Crypto\KeysRegistry;
-use Windy\Guardian\Exceptions\InvalidConfiguration;
+use Windy\Guardian\Exceptions\InvalidAuthorityConfigurationException;
 use Windy\Guardian\Tests\GuardianTestCase;
 
 /**
@@ -57,15 +58,14 @@ class AuthoritiesRegistryTest extends GuardianTestCase
 
     /**
      * @covers ::unknown
-     * @covers \Windy\Guardian\Exceptions\InvalidConfiguration::authority
+     *
+     * @throws Throwable
      */
     public function testUnknown(): void
     {
         /** @var AuthoritiesRegistry $registry */
-        $registry  = $this->app->make(AuthoritiesRegistry::class);
-        $exception = $registry->unknown('foo');
-
-        $this->assertInstanceOf(InvalidConfiguration::class, $exception);
-        $this->assertMatchesRegularExpression('/authorities.*foo/s', $exception->getMessage());
+        $registry = $this->app->make(AuthoritiesRegistry::class);
+        $this->expectException(InvalidAuthorityConfigurationException::class);
+        throw $registry->unknown('foo');
     }
 }

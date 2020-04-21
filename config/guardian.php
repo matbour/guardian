@@ -3,20 +3,6 @@
 declare(strict_types=1);
 
 return [
-    'auth'        => [
-        'driver_name' => 'guardian',
-        'authority'   => 'default',
-        'strategy'    => 'eloquent',
-        'eloquent'    => [
-            'model'      => '\\App\\User',
-            'identifier' => null, // If set to null, use the default model key name
-        ],
-        'database'    => [
-            'connection' => null, // If set to null, use the default database connection
-            'table'      => 'users',
-            'identifier' => 'id',
-        ],
-    ],
     'authorities' => [
         'default' => [
             'key'    => env('JWT_KEY', 'default'),
@@ -27,7 +13,7 @@ return [
         'default' => [
             'algorithm' => env('JWT_KEY_ALGORITHM', 'HS512'),
             'size'      => env('JWT_KEY_SIZE', 1024),
-            'path'      => env('JWT_KEY_PATH', storage_path('jwt_auth.json')),
+            'path'      => env('JWT_KEY_PATH', storage_path('guardian.json')),
         ],
     ],
     'claims'      => [

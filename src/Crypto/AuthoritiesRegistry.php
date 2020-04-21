@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Windy\Guardian\Crypto;
 
 use Illuminate\Contracts\Container\Container;
-use Illuminate\Validation\ValidationException;
-use Windy\Guardian\Exceptions\InvalidConfiguration;
 use Throwable;
+use Windy\Guardian\Exceptions\InvalidAuthorityConfigurationException;
+use Windy\Guardian\Exceptions\InvalidConfigurationException;
 
 /**
  * @mixin Authority
@@ -34,7 +34,7 @@ class AuthoritiesRegistry extends Registry
      *
      * @return Authority The newly created authority.
      *
-     * @throws InvalidConfiguration
+     * @throws InvalidConfigurationException
      */
     public function create(array $config): Authority
     {
@@ -47,10 +47,10 @@ class AuthoritiesRegistry extends Registry
     /**
      * @param string $name The key configuration name.
      *
-     * @return InvalidConfiguration
+     * @return InvalidAuthorityConfigurationException The invalid authority configuration exception.
      */
     public function unknown(string $name): Throwable
     {
-        return InvalidConfiguration::authority($name);
+        return new InvalidAuthorityConfigurationException($name);
     }
 }

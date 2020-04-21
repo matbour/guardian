@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Windy\Guardian\Exceptions;
 
-use RuntimeException;
 use Throwable;
 
 /**
  * Thrown when the application tries to use a feature which is provided by an optional library.
  */
-class MissingLibraryException extends RuntimeException
+class MissingLibraryException extends GuardianException
 {
     public function __construct(
         string $library,
