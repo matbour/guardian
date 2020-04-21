@@ -15,7 +15,7 @@ use Throwable;
  *
  * @mixin Key
  */
-class KeyRegistry extends Registry
+class KeysRegistry extends Registry
 {
     /** @var KeyFactory $factory The JWK factory. */
     private $factory;

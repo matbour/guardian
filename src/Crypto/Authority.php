@@ -139,7 +139,7 @@ class Authority
      *
      * @return bool If the provided JWS is valid.
      *
-     * @throws JWTException
+     * @throws InvalidClaimException
      */
     public function check($jws, bool $throw = false): bool
     {

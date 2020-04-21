@@ -20,7 +20,7 @@ use Ramsey\Uuid\Uuid;
 use Windy\Guardian\Constants;
 use Windy\Guardian\Crypto\KeyFactory;
 use Windy\Guardian\Exceptions\InvalidConfiguration;
-use Windy\Guardian\Exceptions\MissingLibrary;
+use Windy\Guardian\Exceptions\MissingLibraryException;
 use Windy\Guardian\Tests\GuardianTestCase;
 use function array_key_exists;
 use function array_map;
@@ -70,6 +70,7 @@ class KeyFactoryTest extends GuardianTestCase
     /**
      * @testdox fails to resolve an invalid algorithm.
      * @covers ::getAlgorithm
+     * @covers \Windy\Guardian\Exceptions\InvalidConfiguration::algorithm
      */
     public function testGetAlgorithmInvalid(): void
     {
@@ -151,7 +152,7 @@ class KeyFactoryTest extends GuardianTestCase
      * @param mixed[] $config The key configuration.
      *
      * @throws InvalidConfiguration
-     * @throws MissingLibrary
+     * @throws MissingLibraryException
      * @throws ValidationException
      */
     public function testCreateFromConfig(array $config): void
@@ -180,7 +181,7 @@ class KeyFactoryTest extends GuardianTestCase
      * @covers ::createFromConfig
      *
      * @throws InvalidConfiguration
-     * @throws MissingLibrary
+     * @throws MissingLibraryException
      * @throws ValidationException
      */
     public function testCreateFromConfigExisting(): void

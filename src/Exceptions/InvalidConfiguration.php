@@ -14,17 +14,6 @@ class InvalidConfiguration extends InvalidArgumentException
         return new self("Invalid algorithm $algorithm", 0, $previous);
     }
 
-    public static function claim(string $claim, ?Throwable $previous = null): self
-    {
-        $message = "Invalid claim {$claim} configuration";
-
-        if ($previous !== null) {
-            $message .= ": {$previous->getMessage()}";
-        }
-
-        return new self($message, 0, $previous);
-    }
-
     public static function key(string $name, ?Throwable $previous = null): self
     {
         $message = <<<PAYLOAD
@@ -53,7 +42,7 @@ Unknown payload configuration `$name`. Did you forget to define it in your confi
 config/guardian.php
 [
     ...
-    'payloads' => [
+    'claims' => [
         '$name' => [
             'iss' => 'Your Issuer',
             'aud' => 'Your Audience',

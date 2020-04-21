@@ -16,7 +16,7 @@ use Jose\Component\KeyManagement\JWKFactory as JoseJWKFactory;
 use Jose\Component\Signature\Algorithm\RS512;
 use Windy\Guardian\Constants;
 use Windy\Guardian\Exceptions\InvalidConfiguration;
-use Windy\Guardian\Exceptions\MissingLibrary;
+use Windy\Guardian\Exceptions\MissingLibraryException;
 use Windy\Guardian\Utils\IO;
 use function array_merge;
 use function assert;
@@ -66,7 +66,7 @@ class KeyFactory
      * @return string The algorithm class full qualified name.
      *
      * @throws InvalidConfiguration
-     * @throws MissingLibrary
+     * @throws MissingLibraryException
      */
     public function getAlgorithm(string $algorithm): string
     {
@@ -81,19 +81,19 @@ class KeyFactory
         // At this point, failure is expected, try to helper the final developer
         // @codeCoverageIgnoreStart
         if (in_array($algorithm, Constants::ECDSA_ALGORITHMS, true)) {
-            throw new MissingLibrary('web-token/jwt-signature-algorithm-ecdsa', $algorithm);
+            throw new MissingLibraryException('web-token/jwt-signature-algorithm-ecdsa', $algorithm);
         }
 
         if (in_array($algorithm, Constants::EDDSA_ALGORITHMS, true)) {
-            throw new MissingLibrary('web-token/jwt-signature-algorithm-eddsa', $algorithm);
+            throw new MissingLibraryException('web-token/jwt-signature-algorithm-eddsa', $algorithm);
         }
 
         if (in_array($algorithm, Constants::HMAC_ALGORITHMS, true)) {
-            throw new MissingLibrary('web-token/jwt-signature-algorithm-hmac', $algorithm);
+            throw new MissingLibraryException('web-token/jwt-signature-algorithm-hmac', $algorithm);
         }
 
         if (in_array($algorithm, Constants::RSA_ALGORITHMS, true)) {
-            throw new MissingLibrary('web-token/jwt-signature-algorithm-rsa', $algorithm);
+            throw new MissingLibraryException('web-token/jwt-signature-algorithm-rsa', $algorithm);
         }
         // @codeCoverageIgnoreEnd
 
@@ -108,7 +108,7 @@ class KeyFactory
      * @return Key The key object.
      *
      * @throws InvalidConfiguration
-     * @throws MissingLibrary
+     * @throws MissingLibraryException
      * @throws ValidationException
      */
     public function createFromConfig(array $config): Key

@@ -10,18 +10,16 @@ use Throwable;
 /**
  * Thrown when the application tries to use a feature which is provided by an optional library.
  */
-class MissingLibrary extends RuntimeException
+class MissingLibraryException extends RuntimeException
 {
     public function __construct(
         string $library,
-        ?string $reason = null,
+        string $reason = 'this feature',
         ?Throwable $previous = null
     )
     {
-        $reason = $reason ?? 'this feature';
-
-        $message = "In order to use $reason, you need to install the package $library. You can do it by running: "
-            . "`composer require $library`";
+        $message = "In order to use $reason, you need to install the package $library."
+            . "You can do it by running: `composer require $library`";
 
         parent::__construct($message, 0, $previous);
     }

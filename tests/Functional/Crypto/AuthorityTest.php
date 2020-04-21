@@ -15,6 +15,8 @@ use Mockery\MockInterface;
 use Windy\Guardian\Crypto\Authority;
 use Windy\Guardian\Crypto\Claims;
 use Windy\Guardian\Crypto\Key;
+use Windy\Guardian\Exceptions\InvalidClaimException;
+use Windy\Guardian\Exceptions\InvalidSignatureException;
 use Windy\Guardian\Tests\GuardianTestCase;
 use function base64_decode;
 use function base64_encode;
@@ -22,12 +24,32 @@ use function explode;
 use function file_get_contents;
 use function fopen;
 use function json_decode;
+use function strrev;
 
 /**
  * @coversDefaultClass \Windy\Guardian\Crypto\Authority
  */
 class AuthorityTest extends GuardianTestCase
 {
+    private $authority;
+
+    private function getAuthority(): Authority
+    {
+        if ($this->authority !== null) {
+            return $this->authority;
+        }
+
+        return $this->authority = new Authority(
+            new Key(JWKFactory::createOctKey(256), ['algorithm' => HS256::class]),
+            new Claims(['iss' => 'foo'])
+        );
+    }
+
+    private function getUser(): GenericUser
+    {
+        return new GenericUser(['id' => 42]);
+    }
+
     /**
      * @covers ::__construct
      */
@@ -43,7 +65,7 @@ class AuthorityTest extends GuardianTestCase
     }
 
     /**
-     * @return mixed[][] The create payload dataset.
+     * @return mixed[][] The dataset for {@see testPayload}.
      */
     public function createPayloadDataset(): array
     {
@@ -96,10 +118,7 @@ class AuthorityTest extends GuardianTestCase
      */
     public function testPayload($payload, array $expectedPayload): void
     {
-        $authority = new Authority(
-            new Key(JWKFactory::createOctKey(256), ['algorithm' => HS256::class]),
-            new Claims(['iss' => 'foo'])
-        );
+        $authority = $this->getAuthority();
 
         $expectedPayload['iss'] = 'foo';
 
@@ -109,15 +128,9 @@ class AuthorityTest extends GuardianTestCase
     /**
      * @covers ::sign
      */
-    public function testSign(): void
+    public function testSignSerialize(): void
     {
-        $authority = new Authority(
-            new Key(JWKFactory::createOctKey(256), ['algorithm' => HS256::class]),
-            new Claims([])
-        );
-
-        $user    = new GenericUser(['id' => 42]);
-        $parts   = explode('.', $authority->sign($user, true));
+        $parts   = explode('.', $this->getAuthority()->sign($this->getUser(), true));
         $headers = json_decode(base64_decode($parts[0]), true);
         $payload = json_decode(base64_decode($parts[1]), true);
 
@@ -125,35 +138,117 @@ class AuthorityTest extends GuardianTestCase
         $this->assertArrayHasKey('sub', $payload);
         $this->assertEquals(42, $payload['sub']);
         $this->assertIsString($parts[2]);
-        $this->assertInstanceOf(JWS::class, $authority->sign($user, false));
+    }
+
+    /**
+     * @covers ::sign
+     */
+    public function testSignJWS(): void
+    {
+        $this->assertInstanceOf(JWS::class, $this->getAuthority()->sign($this->getUser(), false));
     }
 
     /**
      * @return mixed[][]
      */
-    public function createUnserialize(): array
+    public function createUnserializeDataset(): array
     {
-        $payload = '{"sub":"42"}';
+        $payload = '{"iss":"foo","sub":"42"}';
 
         return [
-            [base64_encode('{"alg":"HS256"}') . '.' . base64_encode($payload) . '.'],
-            [new JWS($payload)],
+            [base64_encode('{"alg":"HS256"}') . '.' . base64_encode($payload) . '.', $payload],
+            [new JWS($payload), $payload],
         ];
     }
 
     /**
-     * @dataProvider createUnserialize
+     * @dataProvider createUnserializeDataset
      * @covers ::unserialize
      *
-     * @param JWS|string $jws The JWT to unserialize.
+     * @param JWS|string $jws             The JWT to unserialize.
+     * @param string     $expectedPayload The expected JWT payload.
      */
-    public function testUnserialize($jws): void
+    public function testUnserialize($jws, string $expectedPayload): void
     {
-        $authority = new Authority(
-            new Key(JWKFactory::createOctKey(256), ['algorithm' => HS256::class]),
-            new Claims([])
-        );
+        $this->assertEquals($expectedPayload, $this->getAuthority()->unserialize($jws)->getPayload());
+    }
 
-        $this->assertEquals('{"sub":"42"}', $authority->unserialize($jws)->getPayload());
+    /**
+     * @return mixed[][] The dataset for {@see testVerify}.
+     */
+    public function createVerifyDataset(): array
+    {
+        $authority = $this->getAuthority();
+        $valid     = $authority->sign($this->getUser());
+        $parts     = explode('.', $valid);
+        $invalid   = "{$parts[0]}.{$parts[1]}." . strrev($parts[2]);
+
+        return [
+            [$authority, $valid, true],
+            [$authority, $invalid, false],
+            [$authority, $invalid, false, InvalidSignatureException::class],
+        ];
+    }
+
+    /**
+     * @dataProvider createVerifyDataset
+     * @covers ::verify
+     * @covers \Windy\Guardian\Exceptions\InvalidSignatureException
+     *
+     * @param Authority   $authority         The Authority to use.
+     * @param string      $jws               The JWS to check.
+     * @param bool        $expectValid       If the JWS is expected to be valid.
+     * @param string|null $expectedException The expected exception, if any.
+     */
+    public function testVerify(
+        Authority $authority,
+        string $jws,
+        bool $expectValid,
+        ?string $expectedException = null
+    ): void
+    {
+        if ($expectedException) {
+            $this->expectException($expectedException);
+        }
+
+        $this->assertEquals($expectValid, $authority->verify($jws, $expectedException !== null));
+    }
+
+    /**
+     * @return mixed[][] The dataset for {@see testCheck}.
+     */
+    public function createCheckDataset(): array
+    {
+        $headers = base64_encode('{"alg":"HS256"}');
+        $valid   = base64_encode('{"iss":"foo","sub":"42"}');
+        $invalid = base64_encode('{"sub":"42"}');
+
+        return [
+            ["$headers.$valid.", true],
+            ["$headers.$invalid.", false],
+            ["$headers.$invalid.", false, InvalidClaimException::class],
+        ];
+    }
+
+    /**
+     * @dataProvider createCheckDataset
+     * @covers ::check
+     * @covers \Windy\Guardian\Exceptions\InvalidClaimException
+     *
+     * @param string      $jws               The JWS to check.
+     * @param bool        $expectValid       If the JWS is expected to be valid.
+     * @param string|null $expectedException The expected exception, if any.
+     */
+    public function testCheck(
+        string $jws,
+        bool $expectValid,
+        ?string $expectedException = null
+    ): void
+    {
+        if ($expectedException) {
+            $this->expectException($expectedException);
+        }
+
+        $this->assertEquals($expectValid, $this->getAuthority()->check($jws, $expectedException !== null));
     }
 }

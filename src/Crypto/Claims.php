@@ -93,7 +93,7 @@ class Claims
     public function check(JWS $jws, ?Key $key = null): bool
     {
         $claims = json_decode($jws->getPayload(), true);
-        $this->checker->check($claims);
+        $this->checker->check($claims, $this->mandatory);
 
         if ($key !== null) {
             // If a key is provided, also check the algorithm header

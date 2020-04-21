@@ -19,7 +19,7 @@ class AuthoritiesRegistry extends Registry
 
     public function __construct(
         Container $container,
-        KeyRegistry $keyRegistry,
+        KeysRegistry $keyRegistry,
         ClaimsRegistry $claimsRegistry
     )
     {
@@ -34,7 +34,7 @@ class AuthoritiesRegistry extends Registry
      *
      * @return Authority The newly created authority.
      *
-     * @throws ValidationException
+     * @throws InvalidConfiguration
      */
     public function create(array $config): Authority
     {
@@ -47,7 +47,7 @@ class AuthoritiesRegistry extends Registry
     /**
      * @param string $name The key configuration name.
      *
-     * @return Throwable The invalid configuration exception.
+     * @return InvalidConfiguration
      */
     public function unknown(string $name): Throwable
     {

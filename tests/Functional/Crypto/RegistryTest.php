@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Windy\Guardian\Tests\Functional\Crypto;
 
 use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\Container\Container;
 use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -59,8 +60,9 @@ class RegistryTest extends GuardianTestCase
      */
     public function testConstructor(): void
     {
-        Mockery::mock(Registry::class);
-        $this->assertTrue(true);
+        $container = Mockery::mock(Container::class);
+        $container->expects('make')->withArgs(['config']);
+        Mockery::mock(Registry::class, [$container, 'mock']);
     }
 
     /**

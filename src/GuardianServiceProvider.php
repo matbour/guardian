@@ -11,14 +11,14 @@ use Jose\Component\Signature\Serializer\Serializer;
 use Windy\Guardian\Auth\GuardianUserResolver;
 use Windy\Guardian\Crypto\AuthoritiesRegistry;
 use Windy\Guardian\Crypto\ClaimsRegistry;
-use Windy\Guardian\Crypto\KeyRegistry;
+use Windy\Guardian\Crypto\KeysRegistry;
 
 class GuardianServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
         $this->app->singleton(Serializer::class, CompactSerializer::class);
-        $this->app->singleton(KeyRegistry::class);
+        $this->app->singleton(KeysRegistry::class);
         $this->app->singleton(ClaimsRegistry::class);
         $this->app->singleton(AuthoritiesRegistry::class);
     }
