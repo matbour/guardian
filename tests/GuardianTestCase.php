@@ -22,7 +22,7 @@ abstract class GuardianTestCase extends TestCase
      */
     public function createApplication()
     {
-        $mode = env('TEST_MODE');
+        $mode = env('TEST_FRAMEWORK');
 
         if ($mode !== 'lumen') {
             $app = require dirname(__DIR__) . '/sandbox/bootstrap/bootstrap.laravel.php';

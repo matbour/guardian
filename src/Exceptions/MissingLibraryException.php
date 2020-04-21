@@ -13,10 +13,12 @@ class MissingLibraryException extends GuardianException
 {
     public function __construct(
         string $library,
-        string $reason = 'this feature',
+        ?string $reason = null,
         ?Throwable $previous = null
     )
     {
+        $reason = $reason ?? 'this feature';
+
         $message = "In order to use $reason, you need to install the package $library."
             . "You can do it by running: `composer require $library`";
 

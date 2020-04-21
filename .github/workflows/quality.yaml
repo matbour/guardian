@@ -1,0 +1,79 @@
+name: Pipeline
+on:
+  push:
+    branches: ['**']
+jobs:
+  lint:
+    name: Lint with PHP_CodeSniffer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        if: "!contains(github.event.head_commit.message, 'lint:skip')"
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        if: "!contains(github.event.head_commit.message, 'lint:skip')"
+        uses: shivammathur/setup-php@2.1.3
+        with:
+          php-version: 7.4
+          coverage: none
+          tools: prestissimo
+      - name: Install dependencies
+        if: "!contains(github.event.head_commit.message, 'lint:skip')"
+        run: composer install --ignore-platform-reqs --no-progress --no-suggest --prefer-dist
+      - name: Lint with PHP_CodeSniffer
+        if: "!contains(github.event.head_commit.message, 'lint:skip')"
+        run: vendor/bin/phpcs
+  tests:
+    name: Test with PHPUnit
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php:
+          - '7.2'
+          - '7.3'
+          - '7.4'
+        framework:
+          - 'laravel/framework:^6.0'
+          - 'laravel/framework:^7.0'
+          - 'laravel/lumen-framework:^6.0'
+          - 'laravel/lumen-framework:^7.0'
+    steps:
+      - name: Checkout
+        if: "!contains(github.event.head_commit.message, 'tests:skip')"
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        if: "!contains(github.event.head_commit.message, 'tests:skip')"
+        uses: shivammathur/setup-php@2.1.3
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: gmp, zip
+          coverage: pcov
+          tools: prestissimo
+      - name: Install dependencies
+        if: "!contains(github.event.head_commit.message, 'tests:skip')"
+        run: |
+          sed -i '/laravel\/framework/d' composer.json
+          sed -i '/laravel\/lumen-framework/d' composer.json
+          composer require --ignore-platform-reqs "${{ matrix.framework }}"
+          composer install --ignore-platform-reqs --no-progress --no-suggest --prefer-dist
+      - name: Test with PHPUnit
+        if: "!contains(github.event.head_commit.message, 'tests:skip')"
+        run: |
+          if [[ "${{ matrix.framework }}" == *"lumen"* ]]; then
+            TEST_FRAMEWORK="lumen"
+          else
+            TEST_FRAMEWORK="laravel"
+          fi
+
+          echo "Testing $TEST_FRAMEWORK (${{ matrix.framework }}) on PHP ${{ matrix.php }}"
+
+          export TEST_FRAMEWORK="$TEST_FRAMEWORK"
+          vendor/bin/phpunit \
+            --coverage-clover=coverage.xml \
+            --coverage-text
+      - uses: codecov/codecov-action@v1
+        if: matrix.php == '7.4' && matrix.framework == 'laravel/lumen-framework:^7.0'
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: coverage.xml

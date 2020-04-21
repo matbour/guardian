@@ -45,6 +45,16 @@ class KeyFactoryTest extends GuardianTestCase
     }
 
     /**
+     * Polyfill for PHPUnit 9.
+     *
+     * @param string $path The file path.
+     */
+    private function assertFileDoesNotExist(string $path): void
+    {
+        $this->assertFalse(file_exists($path), "Found unexpected file at $path");
+    }
+
+    /**
      * @covers ::__construct
      */
     public function testConstruct(): void
