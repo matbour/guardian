@@ -4,7 +4,7 @@
   "description": "Highly configurable JSON Web Token implementation for Laravel and Lumen.",
   "main": "index.js",
   "scripts": {
-    "docs:export": "cp-cli ./README.md ../README.md && cp-cli ./contributing/README.md ../CONTRIBUTING.md",
+    "docs:export": "cp-cli ./README.md ../README.md && cp-cli ./contributing.md ../CONTRIBUTING.md",
     "docs:dev": "vuepress dev .",
     "docs:build": "vuepress build ."
   },
