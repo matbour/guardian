@@ -12,8 +12,6 @@ Highly configurable JSON Web Token implementation for Laravel and Lumen.
 It exposes an additional authentication `guardian` driver, which can be used
 like the standard `session` or `token` drivers.
 
-[[toc]]
-
 ## Motivations
 My company based its back-end on the Lumen Framework, and we had to choose a stateless identification and authentication method.
 We chose to use the JSON Web Tokens which combine security and ease.
