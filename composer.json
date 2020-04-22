@@ -1,7 +1,7 @@
 {
   "name": "mathieu-bour/guardian",
   "description": "Highly configuration JSON Web Token implementation for Laravel and Lumen.",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "type": "library",
   "keywords": [
     "php",
@@ -38,9 +38,7 @@
     "ramsey/uuid": "^3.8",
     "web-token/jwt-checker": "^2.1",
     "web-token/jwt-core": "^2.1",
-    "web-token/jwt-key-mgmt": "^2.1",
-    "ext-zip": "*",
-    "ext-curl": "*"
+    "web-token/jwt-key-mgmt": "^2.1"
   },
   "require-dev": {
     "laravel/framework": "^7.0",
