@@ -1,0 +1,34 @@
+{
+  "name": "@mathieu-bour/guardian",
+  "version": "0.1.0",
+  "description": "Highly configurable JSON Web Token implementation for Laravel and Lumen.",
+  "main": "index.js",
+  "scripts": {
+    "docs:export": "cp-cli ./README.md ../README.md && cp-cli ./contributing/README.md ../CONTRIBUTING.md",
+    "docs:dev": "vuepress dev .",
+    "docs:build": "vuepress build ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mathieu-bour/guardian.git"
+  },
+  "keywords": [
+    "laravel",
+    "lumen",
+    "jwt",
+    "jws",
+    "authentication"
+  ],
+  "author": "Mathieu Bour",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mathieu-bour/guardian/issues"
+  },
+  "homepage": "https://github.com/mathieu-bour/guardian#readme",
+  "devDependencies": {
+    "cp-cli": "^2.0.0",
+    "cpx": "^1.5.0",
+    "cpy-cli": "^3.1.0",
+    "vuepress": "^1.4.1"
+  }
+}

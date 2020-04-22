@@ -2,6 +2,7 @@
 # Directories
 .github export-ignore
 .idea export-ignore
+docs export-ignore
 sandbox export-ignore
 tests export-ignore
 
