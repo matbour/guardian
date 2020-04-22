@@ -6,6 +6,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/mathieu-bour/guardian?style=flat-square)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/mathieu-bour/guardian?style=flat-square)
 ![Codecov](https://img.shields.io/codecov/c/gh/mathieu-bour/guardian?style=flat-square)
+![Scrutinizer code quality](https://img.shields.io/scrutinizer/quality/g/mathieu-bour/guardian?style=flat-square)
 
 Highly configurable JSON Web Token implementation for Laravel and Lumen.
 It exposes an additional authentication `guardian` driver, which can be used
