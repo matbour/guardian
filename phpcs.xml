@@ -24,6 +24,7 @@
   </rule>
 
   <!-- Inclusions -->
+  <file>benchmarks</file>
   <file>src</file>
   <file>tests</file>
 </ruleset>
