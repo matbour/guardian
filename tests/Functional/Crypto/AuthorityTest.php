@@ -131,8 +131,8 @@ class AuthorityTest extends GuardianTestCase
     public function testSignSerialize(): void
     {
         $parts   = explode('.', $this->getAuthority()->sign($this->getUser(), true));
-        $headers = json_decode(base64_decode($parts[0]), true);
-        $payload = json_decode(base64_decode($parts[1]), true);
+        $headers = json_decode(base64_decode($parts[0], true), true);
+        $payload = json_decode(base64_decode($parts[1], true), true);
 
         $this->assertArrayHasKey('alg', $headers);
         $this->assertArrayHasKey('sub', $payload);
