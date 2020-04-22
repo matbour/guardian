@@ -55,8 +55,8 @@ jobs:
         run: |
           sed -i '/laravel\/framework/d' composer.json
           sed -i '/laravel\/lumen-framework/d' composer.json
-          composer require --ignore-platform-reqs "${{ matrix.framework }}"
-          composer install --ignore-platform-reqs --no-progress --no-suggest --prefer-dist
+          composer require "${{ matrix.framework }}"
+          composer install --no-progress --no-suggest --prefer-dist
       - name: Test with PHPUnit
         if: "!contains(github.event.head_commit.message, 'tests:skip')"
         run: |
