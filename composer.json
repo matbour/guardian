@@ -1,7 +1,7 @@
 {
   "name": "mathieu-bour/guardian",
   "description": "Highly configuration JSON Web Token implementation for Laravel and Lumen.",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.1",
   "type": "library",
   "keywords": [
     "php",
