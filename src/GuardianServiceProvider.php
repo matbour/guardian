@@ -15,6 +15,7 @@ use Windy\Guardian\Crypto\ClaimsRegistry;
 use Windy\Guardian\Crypto\KeysRegistry;
 use Windy\Guardian\Exceptions\InvalidGuardConfigurationException;
 use Windy\Guardian\Utils\IO;
+use function dirname;
 
 /**
  * Service provider for the Guardian library.
@@ -32,8 +33,15 @@ class GuardianServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/guardian.php', 'guardian');
+        // Register Guardian configuration
+        $guardianConfig = dirname(__DIR__) . '/config/guardian.php';
 
+        $this->mergeConfigFrom($guardianConfig, 'guardian');
+        $this->publishes([
+            $guardianConfig => $this->app->basePath('config/guardian.php'),
+        ]);
+
+        // Register Guardian Request Guard
         /** @var AuthManager $auth */
         $auth = $this->app->make('auth');
 
