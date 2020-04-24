@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Configuration | Guardian</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Highly configurable JSON Web Token implementation for Laravel and Lumen.">
+    <link rel="preload" href="/guardian/assets/css/0.styles.1a9d24f8.css" as="style"><link rel="preload" href="/guardian/assets/js/app.ec87d16d.js" as="script"><link rel="preload" href="/guardian/assets/js/2.77b36989.js" as="script"><link rel="preload" href="/guardian/assets/js/8.3f02365a.js" as="script"><link rel="prefetch" href="/guardian/assets/js/10.1fc0d343.js"><link rel="prefetch" href="/guardian/assets/js/11.bb225b1d.js"><link rel="prefetch" href="/guardian/assets/js/12.548891e7.js"><link rel="prefetch" href="/guardian/assets/js/3.47794884.js"><link rel="prefetch" href="/guardian/assets/js/4.f15bace1.js"><link rel="prefetch" href="/guardian/assets/js/5.861c9799.js"><link rel="prefetch" href="/guardian/assets/js/6.d38ccf32.js"><link rel="prefetch" href="/guardian/assets/js/7.8cc3dfe9.js"><link rel="prefetch" href="/guardian/assets/js/9.39d691ed.js">
+    <link rel="stylesheet" href="/guardian/assets/css/0.styles.1a9d24f8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/guardian/" class="home-link router-link-active"><!----> <span class="site-name">Guardian</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/guardian/#installation" class="nav-link">
+  Installation
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Reference" class="dropdown-title"><span class="title">Reference</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guardian/reference/jwt.html" class="nav-link">
+  What are JWTs?
+</a></li><li class="dropdown-item"><!----> <a href="/guardian/reference/configuration.html" class="nav-link router-link-exact-active router-link-active">
+  Configuration
+</a></li><li class="dropdown-item"><!----> <a href="/guardian/reference/performances.html" class="nav-link">
+  Performances
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Case studies" class="dropdown-title"><span class="title">Case studies</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guardian/case-studies/authentication.html" class="nav-link">
+  Authentication
+</a></li></ul></div></div><div class="nav-item"><a href="/guardian/contributing.html" class="nav-link">
+  Contributing
+</a></div> <a href="https://github.com/mathieu-bour/guardian" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/guardian/#installation" class="nav-link">
+  Installation
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Reference" class="dropdown-title"><span class="title">Reference</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guardian/reference/jwt.html" class="nav-link">
+  What are JWTs?
+</a></li><li class="dropdown-item"><!----> <a href="/guardian/reference/configuration.html" class="nav-link router-link-exact-active router-link-active">
+  Configuration
+</a></li><li class="dropdown-item"><!----> <a href="/guardian/reference/performances.html" class="nav-link">
+  Performances
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Case studies" class="dropdown-title"><span class="title">Case studies</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guardian/case-studies/authentication.html" class="nav-link">
+  Authentication
+</a></li></ul></div></div><div class="nav-item"><a href="/guardian/contributing.html" class="nav-link">
+  Contributing
+</a></div> <a href="https://github.com/mathieu-bour/guardian" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Configuration</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/guardian/reference/configuration.html#guardian" class="sidebar-link">Guardian</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guardian/reference/configuration.html#key" class="sidebar-link">Key</a></li><li class="sidebar-sub-header"><a href="/guardian/reference/configuration.html#claims" class="sidebar-link">Claims</a></li><li class="sidebar-sub-header"><a href="/guardian/reference/configuration.html#authority" class="sidebar-link">Authority</a></li><li class="sidebar-sub-header"><a href="/guardian/reference/configuration.html#default-authority-key-and-claims" class="sidebar-link">Default authority, key and claims</a></li></ul></li><li><a href="/guardian/reference/configuration.html#authentication-driver" class="sidebar-link">Authentication driver</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="configuration"><a href="#configuration" class="header-anchor">#</a> Configuration</h1> <p>While Guardian is a library to handle JWT, we introduced some concepts to manipulate tokens more easily.</p> <p></p><div class="table-of-contents"><ul><li><a href="#guardian">Guardian</a><ul><li><a href="#key">Key</a></li><li><a href="#claims">Claims</a></li><li><a href="#authority">Authority</a></li><li><a href="#default-authority-key-and-claims">Default authority, key and claims</a></li></ul></li><li><a href="#authentication-driver">Authentication driver</a></li></ul></div><p></p> <h2 id="guardian"><a href="#guardian" class="header-anchor">#</a> Guardian</h2> <h3 id="key"><a href="#key" class="header-anchor">#</a> Key</h3> <p>A <strong>key</strong> is composed of an algorithm and its parameters.
+For example, a key which uses the <code>RS256</code> algorithm is RSA-based key and has a <em>size</em> expressed on bits.</p> <p>The following table summarizes the key types, their available algorithms and parameters.</p> <table><thead><tr><th>Type</th> <th>Available algorithms</th> <th>Parameters</th></tr></thead> <tbody><tr><td>ECDSA (Elliptic curves)</td> <td><code>HS256</code>, <code>HS384</code>, <code>HS512</code></td> <td><code>curve</code></td></tr> <tr><td>EdDSA (Edward's curve)</td> <td><code>EdDSA</code></td> <td><code>curve</code></td></tr> <tr><td>HMAC</td> <td><code>HS256</code>, <code>HS384</code>, <code>HS512</code></td> <td><code>size</code> in bits</td></tr> <tr><td>RSA</td> <td><code>RS256</code>, <code>RS384</code>, <code>RS512</code>, <code>PS256</code>, <code>PS384</code>, <code>PS512</code></td> <td><code>size</code> in bits</td></tr></tbody></table> <h4 id="key-parameter"><a href="#key-parameter" class="header-anchor">#</a> Key parameter</h4> <h5 id="ecdsa"><a href="#ecdsa" class="header-anchor">#</a> ECDSA</h5> <p>The <code>curve</code> parameter has to be in the following list:</p> <ul><li><code>P-256</code></li> <li><code>P-384</code></li> <li><code>P-521</code></li></ul> <h5 id="eddsa"><a href="#eddsa" class="header-anchor">#</a> EdDSA</h5> <p>Since the JWT framework used in Guardian only supports the Ed25519 curve, the only available curve is <code>Ed25519</code>.</p> <h5 id="hmac"><a href="#hmac" class="header-anchor">#</a> HMAC</h5> <p>HMAC-based keys are the fastest but (in theory) the least secure.
+The key size has to a multiple of 8 bits and has a minimum size:</p> <table><thead><tr><th>Algorithm</th> <th>Size (in bits)</th></tr></thead> <tbody><tr><td><code>HS256</code></td> <td>256</td></tr> <tr><td><code>HS384</code></td> <td>384</td></tr> <tr><td><code>HS512</code></td> <td>512</td></tr></tbody></table> <h5 id="rsa"><a href="#rsa" class="header-anchor">#</a> RSA</h5> <p>RSA is probably the most famous algorithm for digital signatures.
+However, is the slowest of the supported algorithms; thus, we do not recommend to RSA apart from compatibility reasons.
+The key size has to a multiple of 8 bits and has a minimum size:</p> <table><thead><tr><th>Algorithm</th> <th>Size (in bits)</th></tr></thead> <tbody><tr><td><code>RS256</code></td> <td>2048</td></tr> <tr><td><code>RS384</code></td> <td>3072</td></tr> <tr><td><code>RS512</code></td> <td>4096</td></tr> <tr><td><code>PS256</code></td> <td>2048</td></tr> <tr><td><code>PS384</code></td> <td>3072</td></tr> <tr><td><code>PS512</code></td> <td>4096</td></tr></tbody></table> <p>You can define multiple authorities in the <code>config/guardian.php</code> file.</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token single-quoted-string string">'defaults'</span>    <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// default authority, key and claims set</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'authorities'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// your authorities declarations</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'keys'</span>        <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token single-quoted-string string">'hmac'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+            <span class="token single-quoted-string string">'algorithm'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'HS512'</span><span class="token punctuation">,</span>
+            <span class="token single-quoted-string string">'size'</span>      <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'JWT_KEY_SIZE'</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token single-quoted-string string">'path'</span>      <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">storage_path</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'hmac.json'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token single-quoted-string string">'ecdsa'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+            <span class="token single-quoted-string string">'algorithm'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'ES512'</span><span class="token punctuation">,</span>
+            <span class="token single-quoted-string string">'curve'</span>     <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'P-521'</span><span class="token punctuation">,</span>
+            <span class="token single-quoted-string string">'path'</span>      <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">storage_path</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'ecdsa.json'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'claims'</span>      <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// your claims sets definitions</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p>In this example, we defined two keys:</p> <ol><li><code>hmac</code>, which uses the <code>HS512</code> algorithm with 512 bits key and is stored in <code>storage/hmac.json</code>.</li> <li><code>ecdsa</code>, which uses the <code>ES512</code> algorithm with P-521 curve and is stored in <code>storage/ecdsa.json</code>.</li></ol> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>If the key file does not exists, Guardian will create it for you.</p></div> <p>By 1.x, the elements of a theme has become more complex, we have started to have theme level configuration, which supports plugins, custom global layout, etc. We have also introduced the directory structure conventions on theme development, such as styles/index.styl, under this background, we can not achieve inheritance as 0.x did.</p> <h3 id="claims"><a href="#claims" class="header-anchor">#</a> Claims</h3> <p>In addition to the information contained in the JWTs generated by Guardian, you can add additional registered <strong>claims</strong>.
+They are all optional.</p> <p>For example, the <code>exp</code> claim controls the validity period of a JWT.
+To do this, each set of claims is configurable in the <code>config/guardian.php</code> file.</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token comment">// config/guardian.php</span>
+<span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token single-quoted-string string">'defaults'</span>    <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// default authority, key and claims set</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'authorities'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// your authorities declarations</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'keys'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// your keys declarations</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'claims'</span>      <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token single-quoted-string string">'default'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+            <span class="token comment">// &quot;iss&quot; (Issuer), see https://tools.ietf.org/html/rfc7519#section-4.1.1</span>
+            <span class="token single-quoted-string string">'iss'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'Your Issuer'</span><span class="token punctuation">,</span>
+            <span class="token comment">// &quot;aud&quot; (Audience), see https://tools.ietf.org/html/rfc7519#section-4.1.3</span>
+            <span class="token single-quoted-string string">'aud'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'Your Audience'</span><span class="token punctuation">,</span>
+            <span class="token comment">// &quot;exp&quot; (Expiration Time), see https://tools.ietf.org/html/rfc7519#section-4.1.4</span>
+            <span class="token single-quoted-string string">'exp'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'+3 months'</span><span class="token punctuation">,</span>
+            <span class="token comment">// &quot;nbf&quot; (Not Before), see https://tools.ietf.org/html/rfc7519#section-4.1.5</span>
+            <span class="token single-quoted-string string">'nbf'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'now'</span><span class="token punctuation">,</span>
+            <span class="token comment">// &quot;iat&quot; (Issued At), see https://tools.ietf.org/html/rfc7519#section-4.1.6</span>
+            <span class="token single-quoted-string string">'iat'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'now'</span><span class="token punctuation">,</span>
+            <span class="token comment">// &quot;jti&quot; (JWT ID), see https://tools.ietf.org/html/rfc7519#section-4.1.7</span>
+            <span class="token single-quoted-string string">'jid'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'uuid'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="authority"><a href="#authority" class="header-anchor">#</a> Authority</h3> <p>An <strong>Authority</strong> is an association between a key and a claims set.
+Guardian mostly works through authorities.</p> <p>You can define multiple authorities in the <code>config/guardian.php</code> file.</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token comment">// config/guardian.php</span>
+<span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token single-quoted-string string">'defaults'</span>    <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// default authority, key and claims set</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'authorities'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// the &quot;login&quot; authority will use the key &quot;login-key&quot; and the claims &quot;login-claims&quot;</span>
+        <span class="token single-quoted-string string">'login'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+            <span class="token single-quoted-string string">'key'</span>    <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'login-key'</span><span class="token punctuation">,</span>
+            <span class="token single-quoted-string string">'claims'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'login-claims'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'keys'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// your keys declarations</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'claims'</span>      <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// your claims sets definitions</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="default-authority-key-and-claims"><a href="#default-authority-key-and-claims" class="header-anchor">#</a> Default authority, key and claims</h3> <p>Default authority, key and claims are configured in the <code>default</code> configuration entry in the <code>config/guardian.php</code> file.</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token single-quoted-string string">'defaults'</span>    <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token single-quoted-string string">'authority'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'default-authority'</span><span class="token punctuation">,</span>
+        <span class="token single-quoted-string string">'key'</span>       <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'default-key'</span><span class="token punctuation">,</span>
+        <span class="token single-quoted-string string">'claims'</span>    <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'default-claims'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'authorities'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// your authorities declarations</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'keys'</span>        <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// your keys declarations</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'claims'</span>      <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token comment">// your claims sets definitions</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="authentication-driver"><a href="#authentication-driver" class="header-anchor">#</a> Authentication driver</h2> <p>Guardian exposes a <code>guardian</code> guard driver, which can be used in the <code>config/auth.php</code>.
+The additional configuration keys <code>provider</code> and <code>authority</code> are <strong>required</strong>.</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token comment">// config/auth.php</span>
+<span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token single-quoted-string string">'guards'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+        <span class="token single-quoted-string string">'your-guard-name'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+            <span class="token single-quoted-string string">'driver'</span>    <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'guardian'</span><span class="token punctuation">,</span>
+            <span class="token single-quoted-string string">'provider'</span>  <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'eloquent'</span><span class="token punctuation">,</span> <span class="token comment">// or database</span>
+            <span class="token single-quoted-string string">'authority'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'login'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">]</span>    
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/mathieu-bour/guardian/edit/master/docs/reference/configuration.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">Last updated:</span> <span class="time">4/24/2020, 4:52:09 AM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/guardian/assets/js/app.ec87d16d.js" defer></script><script src="/guardian/assets/js/2.77b36989.js" defer></script><script src="/guardian/assets/js/8.3f02365a.js" defer></script>
+  </body>
+</html>
