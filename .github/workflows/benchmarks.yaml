@@ -1,0 +1,21 @@
+name: Benchmarks
+on:
+  push:
+    branches: ['**']
+jobs:
+  benchmarks:
+    name: Bencharks with PHPBench
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@2.1.3
+        with:
+          php-version: 7.4
+          coverage: none
+          tools: prestissimo
+      - name: Install dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist
+      - name: Lint with PHP_CodeSniffer
+        run: vendor/bin/phpbench run
