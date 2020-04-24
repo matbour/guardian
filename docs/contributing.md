@@ -6,7 +6,7 @@ There are a few guidelines to follow, which were arbitrarily taken, but we are a
 
 ## Security issues
 If you find a security issue in the library, **do not open an issue** and contact Mathieu Bour <mathieu.tin.bour@gmail.com> instead.
-Since Guardian is a cryptographic library which potentially protects sensitive data, security issues are take very seriously and analyzed in restricted environments.
+Since Guardian is a cryptographic library which potentially protects sensitive data, security issues are taken very seriously and analyzed in restricted environments.
 
 
 ## Source code

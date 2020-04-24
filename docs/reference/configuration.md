@@ -87,7 +87,7 @@ In this example, we defined two keys:
 2. `ecdsa`, which uses the `ES512` algorithm with P-521 curve and is stored in `storage/ecdsa.json`.
 
 ::: tip
-If the key file does not exists, Guardian will create it for you.
+If the key file does not exist, Guardian will create it for you.
 :::
 
 

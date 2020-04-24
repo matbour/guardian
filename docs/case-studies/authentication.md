@@ -29,12 +29,12 @@ The key-actions are the following:
 3. The controller generates the payload to sign.
 4. Guardian sign the payload by generating a token for the user.
 5. The token is sent back to the user.
-6. If the credentials are invalid the controller sends an error to the user.
+6. If the credentials are invalid, the controller sends an error to the user.
 
 ## Implementation
 
 ### Configuration
-In this example, will use a `"login"` ECDSA key, configured with the `ES512` algorithm and the `P-521` curve.
+In this example, we will use a `"login"` ECDSA key, configured with the `ES512` algorithm and the `P-521` curve.
 This is a quite good compromise between security and speed.
 See the [configuration documentation](/reference/configuration) for the list of all available cryptographic algorithms.
 
@@ -123,7 +123,7 @@ Send a post request to the route with the user credentials:
 curl -X POST -d email=mathieu@mathrix.fr&password=123456
 ```
 
-The expected JSON response will look to something like:
+The expected JSON response is the following:
 
 ```json
 {

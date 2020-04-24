@@ -12,7 +12,7 @@ Guardian is dealing with **signed JWT** commonly called **JWS**.
 
 JWS are particularly suitable when we want to transfer unencrypted but cryptographically unalterable data.
 For example, it can be a user id that we want to authenticate.
-Since the data is unalterable, when the user come back with JWT, we can simply verify the token signature.
+Since the data are unalterable, when the user come back with JWT, we can simply verify the token signature.
 
 The JWS consists of three distinct parts.
 
@@ -25,7 +25,7 @@ The JWS consists of three distinct parts.
 
 ## Examples
 ### User authentication
-Suppose you have an application where the users are identified by their ids.
+Consider an application where the users are identified by their ids.
 The user table might look like this:
 
 | id | username | password  (hashed) |
