@@ -1,5 +1,4 @@
 # Contributing to Guardian
-
 First of all, thanks for considering contributing to Guardian!
 
 There are a few guidelines to follow, which were arbitrarily taken, but we are always open for discussion! If you feel that something is wrong with our project management, feel free to open an issue.
@@ -25,4 +24,4 @@ The documentation is located in the `docs/` directory and based on [VuePress](ht
 
 Feel free to editing anything, but remember that:
 - The `package.json` `version` field has to be synced with the `composer.json` `version` field.
-- If you edit the README.md or the contributing/README.md, run `npm run docs:export` to sync the files with the root files. **Never edit the repository documentation files directly.** 
+- If you edit the README.md or the contributing.md, run `npm run docs:export` to sync the files with the root files. **Never edit the repository README.md or CONTRIBUTING.md files directly.** 

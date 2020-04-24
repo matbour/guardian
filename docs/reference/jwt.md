@@ -1,8 +1,8 @@
-# Reference
+# JSON Web Tokens (JWT)
 
 [[toc]]
 
-## JSON Web Tokens (JWT)
+## JWT 101
 JSON Web Tokens are described in the [RFC7519](https://tools.ietf.org/html/rfc7519).
 
 > JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties.
@@ -11,7 +11,8 @@ JSON Web Tokens are described in the [RFC7519](https://tools.ietf.org/html/rfc75
 Guardian is dealing with **signed JWT** commonly called **JWS**.
 
 JWS are particularly suitable when we want to transfer unencrypted but cryptographically unalterable data.
-For example, it can be a user id, that we want to authenticate.
+For example, it can be a user id that we want to authenticate.
+Since the data is unalterable, when the user come back with JWT, we can simply verify the token signature.
 
 The JWS consists of three distinct parts.
 
@@ -21,9 +22,9 @@ The JWS consists of three distinct parts.
 | Payload   | The actual piece of information held by the token.                                   |
 | Signature | Unique string generated from a secret key that ensures the integrity of the payload. |
 
-## Use cases
-### User authentication
 
+## Examples
+### User authentication
 Suppose you have an application where the users are identified by their ids.
 The user table might look like this:
 
@@ -33,10 +34,10 @@ The user table might look like this:
 |  2 | valentin | 1lov€k8s           |
 |  3 | dimitri  | 1mor$ay$           |
 
-If you want to use the JWT, you will probably want to put the user id into the token payload, which allows you to simple check to token integrity and get the user id.
+If you want to use the JWTs, you will probably want to put the user id into the token payload, which allows you to simply check to token integrity and get the user id.
 
 JWT payloads are key-value piece of data called **claims**.
-The standard claims are describe in the [RFC7519, Section 4.1](https://tools.ietf.org/html/rfc7519#section-4.1).
+The standard claims are described in the [RFC7519, Section 4.1](https://tools.ietf.org/html/rfc7519#section-4.1).
 
 In this example, we will put the user id inside the `sub` claim, as recommended by the [RFC7519, Section 4.1.2](https://tools.ietf.org/html/rfc7519#section-4.1.2):
 
@@ -76,25 +77,4 @@ Serializing the previous token gives the following result:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIn0.f9GAvQZnFohqZk2JOTRFEeGizsKNcPzKB8om521EHZ8
 ```
 
-You can check the validity of this token on the [jwt.io's debugger](https://jwt.io).
-
-# Guardian concepts
-
-While Guardian is a library to handle JWT, we introduced some concepts to manipulate tokens more easily.
-
-## Key
-A **key** is composed of an algorithm and its parameters.
-For example, a key which uses the `RS256` algorithm is RSA-based key and has a *size* expressed on bits.
-
-The following table summarizes the key types, their available algorithms and parameters.
-
-| Type                    | Available algorithms      | Parameters     |
-|-------------------------|---------------------------|----------------|
-| ECDSA (Elliptic curves) | `HS256`, `HS384`, `HS512` | `curve`        |
-| EDDSA (Edward's curves) | `EDDSA`                   | `curve`        |
-| HMAC                    | `HS256`, `HS384`, `HS512` | `size` in bits |
-| RSA                     | `RS256`, `RS384`, `RS512` | `size` in bits |
-
-## Claims
-
-## Authority
+You can check the validity of this token on the [jwt.io's debugger](https://jwt.io?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIn0.f9GAvQZnFohqZk2JOTRFEeGizsKNcPzKB8om521EHZ8).

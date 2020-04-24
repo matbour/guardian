@@ -1,6 +1,6 @@
 {
   "name": "@mathieu-bour/guardian",
-  "version": "0.1.0",
+  "version": "0.1.0-rc.1",
   "description": "Highly configurable JSON Web Token implementation for Laravel and Lumen.",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/mathieu-bour/guardian#readme",
   "devDependencies": {
-    "vuepress": "^1.4.1"
+    "mermaid": "^8.5.0",
+    "vuepress": "^1.4.1",
+    "vuepress-plugin-mermaidjs": "^1.4.0"
   }
 }
