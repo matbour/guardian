@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Windy\Guardian\Tests;
 
+use Hydra\Testing\TestCase;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Laravel\Lumen\Application as LumenApplication;
-use Sandbox\TestCase;
 use Windy\Guardian\GuardianServiceProvider;
 use function dirname;
 use function env;

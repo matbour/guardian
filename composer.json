@@ -37,7 +37,8 @@
     "ramsey/uuid": "^3.0 || ^4.0",
     "web-token/jwt-checker": "^2.1",
     "web-token/jwt-core": "^2.1",
-    "web-token/jwt-key-mgmt": "^2.1"
+    "web-token/jwt-key-mgmt": "^2.1",
+    "ext-pdo": "*"
   },
   "require-dev": {
     "laravel/framework": "^7.0",
@@ -65,7 +66,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Sandbox\\": "sandbox/app/",
+      "App\\": "sandbox/app/",
       "Windy\\Guardian\\Benchmarks\\": "benchmarks/",
       "Windy\\Guardian\\Tests\\": "tests/"
     }

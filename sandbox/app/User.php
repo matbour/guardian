@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Sandbox;
+namespace App;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;

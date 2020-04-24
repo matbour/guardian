@@ -23,7 +23,7 @@ class AuthoritiesRegistry extends Registry
         ClaimsRegistry $claimsRegistry
     )
     {
-        parent::__construct($container, 'authorities');
+        parent::__construct($container, 'authority');
 
         $this->keyRegistry    = $keyRegistry;
         $this->claimsRegistry = $claimsRegistry;

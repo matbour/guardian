@@ -13,7 +13,6 @@ use Windy\Guardian\Auth\GuardianRequestGuard;
 use Windy\Guardian\Crypto\AuthoritiesRegistry;
 use Windy\Guardian\Crypto\ClaimsRegistry;
 use Windy\Guardian\Crypto\KeysRegistry;
-use Windy\Guardian\Exceptions\InvalidGuardConfigurationException;
 use Windy\Guardian\Utils\IO;
 use function dirname;
 
@@ -46,22 +45,7 @@ class GuardianServiceProvider extends ServiceProvider
         $auth = $this->app->make('auth');
 
         $auth->extend('guardian', static function (Container $app, string $guard, array $config) {
-            $provider = $app->make('auth')->createUserProvider($config['provider'] ?? null);
-
-            if ($provider === null) {
-                throw new InvalidGuardConfigurationException($guard);
-            }
-
-            $guardian = new GuardianRequestGuard(
-                $app->make(AuthoritiesRegistry::class),
-                $config,
-                $app->make('request'),
-                $provider
-            );
-
-            $app->refresh('request', $guardian, 'setRequest');
-
-            return $guardian;
+            return new GuardianRequestGuard($app, $guard, $config);
         });
     }
 }

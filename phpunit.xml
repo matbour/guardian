@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-    bootstrap="tests/bootstrap.php"
-    cacheResult="false"
-    colors="true"
-    beStrictAboutChangesToGlobalState="true"
-    beStrictAboutOutputDuringTests="true"
-    beStrictAboutResourceUsageDuringSmallTests="true"
-    beStrictAboutTodoAnnotatedTests="true"
-    executionOrder="depends,random"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+  bootstrap="tests/bootstrap.php"
+  cacheResult="false"
+  colors="true"
+  beStrictAboutChangesToGlobalState="true"
+  beStrictAboutOutputDuringTests="true"
+  beStrictAboutResourceUsageDuringSmallTests="true"
+  beStrictAboutTodoAnnotatedTests="true"
+  executionOrder="depends,random"
 >
-    <testsuites>
-        <testsuite name="Functional Test Suite">
-            <directory>./tests/Functional</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src</directory>
-        </whitelist>
-    </filter>
+  <testsuites>
+    <testsuite name="End-to-end Test Suite">
+      <directory>./tests/E2E</directory>
+    </testsuite>
+    <testsuite name="Functional Test Suite">
+      <directory>./tests/Functional</directory>
+    </testsuite>
+  </testsuites>
+  <filter>
+    <whitelist processUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">./src</directory>
+    </whitelist>
+  </filter>
+  <php>
+    <env name="APP_DEBUG" value="true"/>
+    <env name="APP_ENV" value="testing"/>
+  </php>
 </phpunit>
