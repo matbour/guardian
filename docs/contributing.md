@@ -12,16 +12,16 @@ Since Guardian is a cryptographic library which potentially protects sensitive d
 ## Source code
 The Guardian source code is mostly located into the `src/` directly.
 
-- PHP code is linted against the [mathrix-education/coding-standard](https://github.com/mathrix-education/coding-standard). If you modified the source code, ensure that the sources are still valid with `vendor/bin/phpcs`.
+- PHP code is linted against the [mathrix-education/coding-standard](https://github.com/mathrix-education/coding-standard). If you modified the source code, ensure that the sources are still valid with `vendor/bin/phpcs`
 - The library has to be compatible with both Laravel and Lumen frameworks, so you cannot use Laravel-specific features:
     - Facades, like `Auth::` - use dependency injection instead
-- We follow [Laravel Support Policy](https://laravel.com/docs/master/releases#support-policy), so everything you write will be tested against the currently supported Laravel version. NB: Lumen follows the same support policy. 
-- Write tests! Since we reach 100% coverage, we won't allow any commit which provide untested code.
+- We follow [Laravel Support Policy](https://laravel.com/docs/master/releases#support-policy), so everything you write will be tested against the currently supported Laravel version. NB: Lumen follows the same support policy 
+- Write tests! Since we reach 100% coverage, we won't allow any commit which provide untested code
 
 
 ## Documentation
 The documentation is located in the `docs/` directory and based on [VuePress](https://vuepress.vuejs.org/).
 
 Feel free to editing anything, but remember that:
-- The `package.json` `version` field has to be synced with the `composer.json` `version` field.
-- If you edit the README.md or the contributing.md, run `npm run docs:export` to sync the files with the root files. **Never edit the repository README.md or CONTRIBUTING.md files directly.** 
+- The `package.json` `version` field has to be synced with the `composer.json` `version` field
+- If you edit the README.md or the contributing.md, run `npm run docs:export` to sync the files with the root files. **Never edit the repository README.md or CONTRIBUTING.md files directly** 
