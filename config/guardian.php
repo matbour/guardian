@@ -3,6 +3,11 @@
 declare(strict_types=1);
 
 return [
+    'defaults'    => [
+        'authority' => 'default',
+        'key'       => 'default',
+        'claims'    => 'default',
+    ],
     'authorities' => [
         'default' => [
             'key'    => env('JWT_KEY', 'default'),
@@ -12,7 +17,8 @@ return [
     'keys'        => [
         'default' => [
             'algorithm' => env('JWT_KEY_ALGORITHM', 'HS512'),
-            'size'      => env('JWT_KEY_SIZE', 1024),
+            'curve'     => env('JWT_KEY_CURVE', 'P-521'),
+            'size'      => env('JWT_KEY_SIZE', 512),
             'path'      => env('JWT_KEY_PATH', storage_path('guardian.json')),
         ],
     ],
