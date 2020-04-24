@@ -308,7 +308,7 @@ class GuardianRequestGuardTest extends GuardianTestCase
      *
      * @throws Throwable
      */
-    public function testValidateUserCredentials(): void
+    public function testValidateFromValidCredentials(): void
     {
         $credentials = [
             'email'    => 'mathieu@mathrix.fr',
@@ -325,6 +325,31 @@ class GuardianRequestGuardTest extends GuardianTestCase
             ->makePartial()
             ->shouldAllowMockingProtectedMethods();
         $guard->expects('getProvider')->withNoArgs()->andReturns($provider)->twice();
+
+        $this->assertFalse($guard->validate($credentials));
+    }
+
+    /**
+     * @covers ::validate
+     * @covers ::validateCredentials
+     *
+     * @throws Throwable
+     */
+    public function testValidateFromInvalidCredentials(): void
+    {
+        $credentials = [
+            'email'    => 'mathieu@mathrix.fr',
+            'password' => '123456',
+        ];
+
+        $provider = Mockery::mock(UserProvider::class);
+        $provider->expects('retrieveByCredentials')->withArgs([$credentials])->andReturnNull();
+
+        /** @var GuardianRequestGuard|Mock $guard */
+        $guard = Mockery::mock(GuardianRequestGuard::class)
+            ->makePartial()
+            ->shouldAllowMockingProtectedMethods();
+        $guard->expects('getProvider')->withNoArgs()->andReturns($provider);
 
         $this->assertFalse($guard->validate($credentials));
     }

@@ -177,8 +177,14 @@ class GuardianRequestGuard implements StatefulGuard
      */
     protected function validateCredentials(array $credentials): bool
     {
+        $this->lastAttempted = $this->getProvider()->retrieveByCredentials($credentials);
+
+        if ($this->lastAttempted === null) {
+            return false;
+        }
+
         return $this->getProvider()->validateCredentials(
-            $this->lastAttempted = $this->getProvider()->retrieveByCredentials($credentials),
+            $this->lastAttempted,
             $credentials
         );
     }
