@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Factory;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
+use Jose\Component\Core\JWK;
+use Jose\Component\Core\JWKSet;
 use Jose\Component\KeyManagement\JWKFactory as JoseJWKFactory;
 use Jose\Component\Signature\Algorithm\RS512;
 use Windy\Guardian\Constants;
@@ -18,7 +20,10 @@ use Windy\Guardian\Exceptions\InvalidAlgorithmExceptionException;
 use Windy\Guardian\Exceptions\InvalidConfigurationException;
 use Windy\Guardian\Exceptions\MissingLibraryException;
 use Windy\Guardian\Utils\IO;
+use function array_fill_keys;
+use function array_key_exists;
 use function array_merge;
+use function assert;
 use function class_exists;
 use function file_exists;
 use function in_array;
@@ -80,22 +85,17 @@ class KeyFactory
             return $algorithm;
         }
 
+        $map = array_merge(
+            array_fill_keys(Constants::ECDSA_ALGORITHMS, 'web-token/jwt-signature-algorithm-ecdsa'),
+            array_fill_keys(Constants::EDDSA_ALGORITHMS, 'web-token/jwt-signature-algorithm-eddsa'),
+            array_fill_keys(Constants::HMAC_ALGORITHMS, 'web-token/jwt-signature-algorithm-hmac'),
+            array_fill_keys(Constants::RSA_ALGORITHMS, 'web-token/jwt-signature-algorithm-rsa')
+        );
+
         // At this point, failure is expected, try to helper the final developer
         // @codeCoverageIgnoreStart
-        if (in_array($algorithm, Constants::ECDSA_ALGORITHMS, true)) {
-            throw new MissingLibraryException('web-token/jwt-signature-algorithm-ecdsa', $algorithm);
-        }
-
-        if (in_array($algorithm, Constants::EDDSA_ALGORITHMS, true)) {
-            throw new MissingLibraryException('web-token/jwt-signature-algorithm-eddsa', $algorithm);
-        }
-
-        if (in_array($algorithm, Constants::HMAC_ALGORITHMS, true)) {
-            throw new MissingLibraryException('web-token/jwt-signature-algorithm-hmac', $algorithm);
-        }
-
-        if (in_array($algorithm, Constants::RSA_ALGORITHMS, true)) {
-            throw new MissingLibraryException('web-token/jwt-signature-algorithm-rsa', $algorithm);
+        if (array_key_exists($algorithm, $map)) {
+            throw new MissingLibraryException($map[$algorithm], $algorithm);
         }
         // @codeCoverageIgnoreEnd
 
@@ -122,10 +122,15 @@ class KeyFactory
         $name      = (new $algorithm())->name();
 
         if (file_exists($config['path'])) {
-            return new Key(
-                JoseJWKFactory::createFromJsonObject($this->io->read($config['path'])),
-                $config
-            );
+            $jwk = JoseJWKFactory::createFromJsonObject($this->io->read($config['path']));
+
+            if ($jwk instanceof JWKSet) {
+                $jwk = $jwk->get(0); // @codeCoverageIgnore
+            }
+
+            assert($jwk instanceof JWK);
+
+            return new Key($jwk, $config);
         }
 
         $octalRule = static function (string $attribute, $value, Closure $fail) use ($name): void {
@@ -188,6 +193,8 @@ class KeyFactory
                 ->validate();
 
             $jwk = JoseJWKFactory::createRSAKey($config['size']);
+        } else {
+            throw new InvalidAlgorithmExceptionException($algorithm); // @codeCoverageIgnore
         }
 
         $this->io->write($config['path'], json_encode($jwk->jsonSerialize(), JSON_PRETTY_PRINT));

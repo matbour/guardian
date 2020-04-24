@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Windy\Guardian\Crypto;
 
 use DateTime;
+use Illuminate\Support\Arr;
 use Jose\Component\Checker\AlgorithmChecker;
 use Jose\Component\Checker\AudienceChecker;
 use Jose\Component\Checker\ClaimCheckerManager;
@@ -18,6 +19,7 @@ use Jose\Component\Checker\NotBeforeChecker;
 use Jose\Component\Signature\JWS;
 use Jose\Component\Signature\JWSTokenSupport;
 use Ramsey\Uuid\Uuid;
+use function array_keys;
 use function json_decode;
 
 class Claims
@@ -118,32 +120,13 @@ class Claims
      */
     public function generate(): array
     {
-        $claims = [];
-
-        if (isset($this->config['iss'])) {
-            $claims['iss'] = $this->config['iss'];
-        }
-
-        if (isset($this->config['aud'])) {
-            $claims['aud'] = $this->config['aud'];
-        }
-
-        if (isset($this->config['exp'])) {
-            $claims['exp'] = (new DateTime($this->config['exp']))->getTimestamp();
-        }
-
-        if (isset($this->config['nbf'])) {
-            $claims['nbf'] = (new DateTime($this->config['nbf']))->getTimestamp();
-        }
-
-        if (isset($this->config['iat'])) {
-            $claims['iat'] = (new DateTime($this->config['iat']))->getTimestamp();
-        }
-
-        if (isset($this->config['jid'])) {
-            $claims['jid'] = Uuid::uuid4();
-        }
-
-        return $claims;
+        return Arr::only([
+            'iss' => $this->config['iss'] ?? null,
+            'aud' => $this->config['aud'] ?? null,
+            'exp' => (new DateTime($this->config['exp'] ?? 'now'))->getTimestamp(),
+            'nbf' => (new DateTime($this->config['nbf'] ?? 'now'))->getTimestamp(),
+            'iat' => (new DateTime($this->config['iat'] ?? 'now'))->getTimestamp(),
+            'jid' => Uuid::uuid4(),
+        ], array_keys($this->config));
     }
 }

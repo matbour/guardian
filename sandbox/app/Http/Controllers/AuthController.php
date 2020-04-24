@@ -24,6 +24,7 @@ class AuthController
             throw new AuthenticationException();
         }
 
+        /** @var string $token The serialized JWS. */
         $token = Guardian::sign(Auth::user());
         // $token = Guardian::get('login')->sign(Auth::user()); // use a non-default authority
 
