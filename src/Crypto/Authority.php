@@ -61,7 +61,7 @@ class Authority
             $payload = $this->payload(stream_get_contents($payload));
         } elseif ($payload instanceof Authenticatable) {
             // Login use case, use the "sub" claim
-            $payload = ['sub' => $payload->getAuthIdentifier()];
+            $payload = ['sub' => (string)$payload->getAuthIdentifier()]; // RFC requires a string
         } elseif ($payload instanceof Arrayable) {
             $payload = $payload->toArray();
         } elseif ($payload instanceof Traversable) {

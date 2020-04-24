@@ -11,13 +11,21 @@ use Windy\Guardian\Guardian;
 
 class AuthController
 {
-    public function login(Request $request)
+    /**
+     * @param Request $request The Illuminate HTTP request.
+     *
+     * @return string[] The token.
+     *
+     * @throws AuthenticationException
+     */
+    public function login(Request $request): array
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
             throw new AuthenticationException();
         }
 
         $token = Guardian::sign(Auth::user());
+        // $token = Guardian::get('login')->sign(Auth::user()); // use a non-default authority
 
         return ['token' => $token];
     }
