@@ -13,10 +13,16 @@ The following table summarizes the key types, their available algorithms and par
 
 | Type                    | Available algorithms                                 | Parameters     |
 |-------------------------|------------------------------------------------------|----------------|
-| ECDSA (Elliptic curves) | `HS256`, `HS384`, `HS512`                            | `curve`        |
+| ECDSA (Elliptic curves) | `ES256`, `ES384`, `ES512`                            | `curve`        |
 | EdDSA (Edward's curve)  | `EdDSA`                                              | `curve`        |
 | HMAC                    | `HS256`, `HS384`, `HS512`                            | `size` in bits |
 | RSA                     | `RS256`, `RS384`, `RS512`, `PS256`, `PS384`, `PS512` | `size` in bits |
+
+:::tip
+The algorithm suffix number stands for the associated sha version.
+For example, ES256 means "Elliptic Curve Digital Signature Algorithm SHA-256".
+:::
+
 
 #### Key parameter
 ##### ECDSA

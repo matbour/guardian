@@ -35,8 +35,6 @@ After careful consideration, we decided to develop our own JWT library for Lumen
 
 ## Prerequisites
 - PHP >= 7.2
-- openssl PHP extension
-- sodium PHP extension
 - Laravel/Lumen 6 or 7
 
 
@@ -49,12 +47,12 @@ composer require mathieu-bour/guardian
 
 Depending on the [algorithm](https://mathieu-bour.github.io/guardian/reference/configuration.html#key) you want to use, install the corresponding cryptographic library:
 
-| Algorithm | Library                                   |
-|-----------|-------------------------------------------|
-| ECDSA     | `web-token/jwt-signature-algorithm-ecdsa` |
-| EdDSA     | `web-token/jwt-signature-algorithm-eddsa` |
-| HMAC      | `web-token/jwt-signature-algorithm-hmac`  |
-| RSA       | `web-token/jwt-signature-algorithm-rsa`   |
+| Algorithm | Library                                   | Required PHP extensions |
+|-----------|-------------------------------------------|-------------------------|
+| ECDSA     | `web-token/jwt-signature-algorithm-ecdsa` | openssl                 |
+| EdDSA     | `web-token/jwt-signature-algorithm-eddsa` | sodium                  |
+| HMAC      | `web-token/jwt-signature-algorithm-hmac`  | n/a                     |
+| RSA       | `web-token/jwt-signature-algorithm-rsa`   | openssl, gmp            |
 
 If you do not know which algorithm to choose, we recommend `ECDSA` with the `ES512` algorithm and the `P-521` curve.
 
