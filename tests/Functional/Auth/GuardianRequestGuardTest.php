@@ -78,11 +78,7 @@ class GuardianRequestGuardTest extends GuardianTestCase
     {
         $container = Mockery::mock(Container::class);
 
-        $guard = new GuardianRequestGuard(
-            $container,
-            'guard',
-            self::CONFIG['guards']['guardian']
-        );
+        $guard = new GuardianRequestGuard($container, 'guard', self::CONFIG['guards']['guardian']);
 
         $this->assertNotNull($guard);
     }
@@ -221,7 +217,9 @@ class GuardianRequestGuardTest extends GuardianTestCase
         $authority = Mockery::mock(Authority::class);
         $authority->expects('verify')->withArgs([$token, true]);
         $authority->expects('check')->withArgs([$token, true]);
-        $authority->expects('unserialize->getPayload')->withNoArgs()->andReturns("{\"sub\":\"$id\"}");
+        $authority->expects('unserialize->getPayload')->withNoArgs()->andReturns(
+            "{\"sub\":\"$id\"}"
+        );
 
         $provider = Mockery::mock(UserProvider::class);
         $provider->expects('retrieveById')->withArgs([(string)$id]);

@@ -29,7 +29,9 @@ class KeyTest extends GuardianTestCase
      */
     public function testConstruct(): void
     {
-        $this->assertNotNull(new Key(JWKFactory::createOctKey(256), ['algorithm' => HS256::class]));
+        $this->assertNotNull(
+            new Key(JWKFactory::createOctKey(256), ['algorithm' => HS256::class])
+        );
     }
 
     /**

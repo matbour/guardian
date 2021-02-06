@@ -52,7 +52,11 @@ class AuthoritiesRegistryTest extends GuardianTestCase
             ->withArgs(['bar'])
             ->andReturns(Mockery::mock(Claims::class));
 
-        $registry = new AuthoritiesRegistry($this->app->make(Container::class), $keysRegistry, $claimsRegistry);
+        $registry = new AuthoritiesRegistry(
+            $this->app->make(Container::class),
+            $keysRegistry,
+            $claimsRegistry
+        );
         $this->assertNotNull($registry->create(['key' => 'foo', 'claims' => 'bar']));
     }
 

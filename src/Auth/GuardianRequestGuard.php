@@ -163,7 +163,9 @@ class GuardianRequestGuard implements StatefulGuard
             return false;
         }
 
-        return ($this->lastAttempted = $this->getProvider()->retrieveById($claims['sub'])) !== false;
+        return ($this->lastAttempted = $this->getProvider()->retrieveById(
+            $claims['sub']
+        )) !== false;
     }
 
     /**
@@ -183,10 +185,7 @@ class GuardianRequestGuard implements StatefulGuard
             return false;
         }
 
-        return $this->getProvider()->validateCredentials(
-            $this->lastAttempted,
-            $credentials
-        );
+        return $this->getProvider()->validateCredentials($this->lastAttempted, $credentials);
     }
 
     /**

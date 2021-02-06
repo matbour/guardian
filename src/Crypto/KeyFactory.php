@@ -86,8 +86,14 @@ class KeyFactory
         }
 
         $map = array_merge(
-            array_fill_keys(Constants::ECDSA_ALGORITHMS, 'web-token/jwt-signature-algorithm-ecdsa'),
-            array_fill_keys(Constants::EDDSA_ALGORITHMS, 'web-token/jwt-signature-algorithm-eddsa'),
+            array_fill_keys(
+                Constants::ECDSA_ALGORITHMS,
+                'web-token/jwt-signature-algorithm-ecdsa'
+            ),
+            array_fill_keys(
+                Constants::EDDSA_ALGORITHMS,
+                'web-token/jwt-signature-algorithm-eddsa'
+            ),
             array_fill_keys(Constants::HMAC_ALGORITHMS, 'web-token/jwt-signature-algorithm-hmac'),
             array_fill_keys(Constants::RSA_ALGORITHMS, 'web-token/jwt-signature-algorithm-rsa')
         );

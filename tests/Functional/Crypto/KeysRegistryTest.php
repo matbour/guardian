@@ -48,7 +48,9 @@ class KeysRegistryTest extends GuardianTestCase
     {
         $config     = ['foo' => 'bar'];
         $keyFactory = Mockery::mock(KeyFactory::class);
-        $keyFactory->expects('createFromConfig')->withArgs([$config])->andReturns(Mockery::mock(Key::class));
+        $keyFactory->expects('createFromConfig')->withArgs([$config])->andReturns(
+            Mockery::mock(Key::class)
+        );
         $this->app->instance(KeyFactory::class, $keyFactory);
 
         /** @var KeysRegistry $registry */

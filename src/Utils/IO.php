@@ -32,7 +32,9 @@ class IO
         }
 
         if (!is_readable($path)) {
-            throw new IOException("File $path exists but is not readable with the current user privileges");
+            throw new IOException(
+                "File $path exists but is not readable with the current user privileges"
+            );
         }
 
         return file_get_contents($path);
@@ -59,11 +61,15 @@ class IO
         }
 
         if (file_exists($path) && !is_writable($path)) {
-            throw new IOException("File $path exists but is not writable with the current user privileges");
+            throw new IOException(
+                "File $path exists but is not writable with the current user privileges"
+            );
         }
 
         if (!is_writable($dir)) {
-            throw new IOException("Directory $dir exists but is not writable with the current user privileges");
+            throw new IOException(
+                "Directory $dir exists but is not writable with the current user privileges"
+            );
         }
 
         return file_put_contents($path, $data);

@@ -170,7 +170,10 @@ class AuthorityTest extends GuardianTestCase
      */
     public function testUnserialize($jws, string $expectedPayload): void
     {
-        $this->assertEquals($expectedPayload, $this->getAuthority()->unserialize($jws)->getPayload());
+        $this->assertEquals(
+            $expectedPayload,
+            $this->getAuthority()->unserialize($jws)->getPayload()
+        );
     }
 
     /**
@@ -249,6 +252,9 @@ class AuthorityTest extends GuardianTestCase
             $this->expectException($expectedException);
         }
 
-        $this->assertEquals($expectValid, $this->getAuthority()->check($jws, $expectedException !== null));
+        $this->assertEquals(
+            $expectValid,
+            $this->getAuthority()->check($jws, $expectedException !== null)
+        );
     }
 }

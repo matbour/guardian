@@ -17,7 +17,7 @@
   <config name="php_version" value="70205"/>
 
   <!-- Rules inherited from Doctrine -->
-  <rule ref="Mathrix">
+  <rule ref="Windy">
     <exclude name="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator"/>
     <exclude name="SlevomatCodingStandard.Functions.TrailingCommaInCall"/>
     <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint"/>
