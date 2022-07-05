@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/mathieu-bour/guardian#readme",
   "devDependencies": {
-    "mermaid": "^8.9.0",
+    "mermaid": "^9.1.2",
     "vuepress": "^1.8.0",
     "vuepress-plugin-mermaidjs": "^1.8.1"
   }
